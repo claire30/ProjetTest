@@ -8,8 +8,8 @@ Have fun and try to enjoy it !
 
 Pour lancer le programme par eclipse : 
 
-  1) Il faut les sources
-  2) il faut la librairie org.graphstream disponible elle aussi sur le github
+1) Il faut les sources
+2) il faut la librairie org.graphstream disponible elle aussi sur le github
     pour ajouter org.graphstream dans le projet eclipse : 
       -> clic droit sur le projet 
       -> propriété 
@@ -20,11 +20,11 @@ Pour lancer le programme par eclipse :
       -> en bas "apply"
       -> plus bas "ok"
       
-  3) Pour commencer les tests, il faut la librairie JUnit4. Pour celà :
+3) Pour commencer les tests, il faut la librairie JUnit4. Pour celà :
     -> clic droit sur une classe
     -> new
     -> JUnit TestCase
-    -> laisser les choix apr défaut puis finish
+    -> laisser les choix par défaut puis finish
     -> "ok"
     
-  4) Félicitation, tout est pret pour commencer à bosser !
+4) Félicitation, tout est pret pour commencer à bosser !
