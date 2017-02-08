@@ -9,8 +9,10 @@ Have fun and try to enjoy it !
 Pour lancer le programme par eclipse : 
 
 1) Il faut les sources
+
 2) il faut la librairie org.graphstream disponible elle aussi sur le github
-    pour ajouter org.graphstream dans le projet eclipse : 
+
+Pour ajouter org.graphstream dans le projet eclipse : 
       -> clic droit sur le projet 
       -> propriété 
       -> a gauche, onglet "java build path" 
