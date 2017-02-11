@@ -376,4 +376,15 @@ public class CoupleTest {
 		assertEquals("aretes égales", c3.getG().getEdgeCount(),3);
 	}
 	
+	/* ce test permet de vérifier le degré d'un sommet
+	 * Le résultat attendu doit correspondre au nombre de voisin du sommet(ici 2)
+	 * Le résultat obtenu est conforme au résultat attendu
+	 */
+	@Test
+	public void NbDegreSommet() {
+		Node a =c3.getG().getNode("2"); 
+		assertTrue("relations vraies", a.getDegree()==2 );
+		
+	}
+	
 }
