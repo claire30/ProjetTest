@@ -360,13 +360,17 @@ public class CoupleTest {
 	
 	/* ce test permet de vérifier le nombre d'aretes d'un graphe vide 
 	 * Le résultat attendu est 0
-	 * Le résultat obtenu est conforme aux résultat attendu
+	 * Le résultat obtenu est conforme au résultat attendu
 	 */
 	@Test 
 	public void testAretesGraphVide() {
 		assertEquals("aretes égales", c1.getG().getEdgeCount(),0);
 	}
 	
+	/* ce test permet de vérifir le nombre d'aretes d'un graphe non vide
+	 * le résultat attendu est que le nombre d'aretes du graphe soit conforme aux arretes que nous avons créé (3)
+	 * Le résultat obtenu est conforme au résultat attendu. 
+	 */
 	@Test
 	public void testAretesGraph() {
 		assertEquals("aretes égales", c3.getG().getEdgeCount(),3);
