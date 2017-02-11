@@ -17,8 +17,8 @@ public class CoupleTest {
 	public int k2;
 
 	/* Ceci est le setup, c'est ici que l'on va instancier et initialiser les variables de la classe test.
-	 * Comme le précise le @Before, ceci sera exécuté avant les tests
-	 * et permet d'avoir des variables instanciées pour pouvoir s'en servir dans les différents tests 
+	 * Comme le prÃ©cise le @Before, ceci sera exÃ©cutÃ© avant les tests
+	 * et permet d'avoir des variables instanciÃ©es pour pouvoir s'en servir dans les diffÃ©rents tests 
 	 */
 	@Before
 	public void setUp() throws Exception {
@@ -32,23 +32,23 @@ public class CoupleTest {
 
 	
 	/* Ceci est le close, c'est ici que l'on va fermer les variables de la classe test qui ont besoin de l'etre.
-	 * Comme le précise le @After, ceci sera exécuté après la fin de tous les tests
-	 * et permet d'éviter les fuites de mémoire où autre soucis.
-	 * Dans ce projet, nous n'avons pas de problème de ce type
+	 * Comme le prÃ©cise le @After, ceci sera exÃ©cutÃ© aprÃ¨s la fin de tous les tests
+	 * et permet d'Ã©viter les fuites de mÃ©moire oÃ¹ autre soucis.
+	 * Dans ce projet, nous n'avons pas de problÃ¨me de ce type
 	 */	
 	@After
 	public void tearDown() throws Exception {
 	}
 	
-	/* Ce test permet de vérifier que la méthode <<insérer un nom ici>> fonctionne correctement dans les conditions suivantes :
+	/* Ce test permet de vÃ©rifier que la mÃ©thode <<insÃ©rer un nom ici>> fonctionne correctement dans les conditions suivantes :
 	 * 
-	 * -> l'entrée << est conforme aux attentes  // pose un problème ( décrire le problème ie: nb arrêtes < 0 ) >>
+	 * -> l'entrÃ©e << est conforme aux attentes  // pose un problÃ¨me ( dÃ©crire le problÃ¨me ie: nb arrÃªtes < 0 ) >>
 	 * 
-	 * -> le résultat attendu de la part du programme est << une truc normal / lever une exception / règler l'erreur sans en informer ... >>
+	 * -> le rÃ©sultat attendu de la part du programme est << une truc normal / lever une exception / rÃ¨gler l'erreur sans en informer ... >>
 	 * 
-	 * -> le résultat obtenu est << conforme aux attentes / différent des attentes ( décrire les différences ) >>
+	 * -> le rÃ©sultat obtenu est << conforme aux attentes / diffÃ©rent des attentes ( dÃ©crire les diffÃ©rences ) >>
 	 * 
-	 * -> si résultat différent : qu'est ce qui cause ce problème ?
+	 * -> si rÃ©sultat diffÃ©rent : qu'est ce qui cause ce problÃ¨me ?
 	 */
 	@Test
 	public void unNomSignificatif() {
@@ -60,13 +60,13 @@ public class CoupleTest {
 	//			Tests Constructeur
 	//
 	
-	/* Ce test permet de vérifier que le constructeur de Couple fonctionne correctement dans les conditions suivantes :
+	/* Ce test permet de vÃ©rifier que le constructeur de Couple fonctionne correctement dans les conditions suivantes :
 	 * 
-	 * -> l'entrée est conforme aux attentes, c'est à dire un graphe g quelconque, et un k strictement positif
+	 * -> l'entrÃ©e est conforme aux attentes, c'est Ã  dire un graphe g quelconque, et un k strictement positif
 	 * 
-	 * -> le résultat attendu de la part du programme est le k passé en paramètre obtenu par la méthode getK()
+	 * -> le rÃ©sultat attendu de la part du programme est le k passÃ© en paramÃ¨tre obtenu par la mÃ©thode getK()
 	 * 
-	 * -> le résultat obtenu est conforme aux attentes
+	 * -> le rÃ©sultat obtenu est conforme aux attentes
 	 */
 	@Test
 	public void creerCoupleOkK() {
@@ -75,13 +75,13 @@ public class CoupleTest {
 		assertTrue(c.getK() == 4);
 	}
 	
-	/* Ce test permet de vérifier que le constructeur de Couple fonctionne correctement dans les conditions suivantes :
+	/* Ce test permet de vÃ©rifier que le constructeur de Couple fonctionne correctement dans les conditions suivantes :
 	 * 
-	 * -> l'entrée est conforme aux attentes, c'est à dire un graphe g quelconque, et un k strictement positif
+	 * -> l'entrÃ©e est conforme aux attentes, c'est Ã  dire un graphe g quelconque, et un k strictement positif
 	 * 
-	 * -> le résultat attendu de la part du programme n'est pas le graphe G passé en paramètre, mais une copie de ce graphe obtenue par la méthode getG()
+	 * -> le rÃ©sultat attendu de la part du programme n'est pas le graphe G passÃ© en paramÃ¨tre, mais une copie de ce graphe obtenue par la mÃ©thode getG()
 	 * 
-	 * -> le résultat obtenu est conforme aux attentes
+	 * -> le rÃ©sultat obtenu est conforme aux attentes
 	 */
 	@Test
 	public void creerCoupleOkGraph() {
@@ -91,15 +91,15 @@ public class CoupleTest {
 		assertSame(c.getG().toString(), g.toString());
 	}
 	
-	/* Ce test permet de vérifier que le constructeur de Couple fonctionne correctement dans les conditions suivantes :
+	/* Ce test permet de vÃ©rifier que le constructeur de Couple fonctionne correctement dans les conditions suivantes :
 	 * 
-	 * -> l'entrée pose un problème, c'est à dire un graphe g quelconque, et un k négatif
+	 * -> l'entrÃ©e pose un problÃ¨me, c'est Ã  dire un graphe g quelconque, et un k nÃ©gatif
 	 * 
-	 * -> le résultat attendu de la part du programme n'est pas le k passé en paramètre, mais un k cohérent avec la situation 
+	 * -> le rÃ©sultat attendu de la part du programme n'est pas le k passÃ© en paramÃ¨tre, mais un k cohÃ©rent avec la situation 
 	 * 
-	 * -> le résultat obtenu est différent des attentes, en effet, le k n'est pas modifié
+	 * -> le rÃ©sultat obtenu est diffÃ©rent des attentes, en effet, le k n'est pas modifiÃ©
 	 * 
-	 * -> celà peut poser un problème, car il est totalement illogique et impossible de chercher un vertex cover de taille négative dans un graphe
+	 * -> celÃ  peut poser un problÃ¨me, car il est totalement illogique et impossible de chercher un vertex cover de taille nÃ©gative dans un graphe
 	 * 
 	 */
 	@Test
@@ -109,17 +109,17 @@ public class CoupleTest {
 		assertNotEquals(-4, c.getK());
 	}
 	
-	/* Ce test permet de vérifier que le constructeur de Couple fonctionne correctement dans les conditions suivantes :
+	/* Ce test permet de vÃ©rifier que le constructeur de Couple fonctionne correctement dans les conditions suivantes :
 	 * 
-	 * -> l'entrée pose un problème, c'est à dire un graphe g null, et un k strictement positif
+	 * -> l'entrÃ©e pose un problÃ¨me, c'est Ã  dire un graphe g null, et un k strictement positif
 	 * 
-	 * -> le résultat attendu de la part du programme n'est pas un graphe null passé en paramètre, mais un graphe cohérent avec la situation
+	 * -> le rÃ©sultat attendu de la part du programme n'est pas un graphe null passÃ© en paramÃ¨tre, mais un graphe cohÃ©rent avec la situation
 	 * 
 	 * il est aussi attendu de ne pas avoir d'erreur de type "NullPointerException"
 	 * 
-	 * -> le résultat obtenu est différent des attentes, en effet, une erreur de type NullPointerException est levée, mais n'est pas gérée par la classe.
+	 * -> le rÃ©sultat obtenu est diffÃ©rent des attentes, en effet, une erreur de type NullPointerException est levÃ©e, mais n'est pas gÃ©rÃ©e par la classe.
 	 * 
-	 * -> Ce problème est dû à la fonction Graphs.clone() qui renvoie cette erreur si le graphe passé en argument est null.
+	 * -> Ce problÃ¨me est dÃ» Ã  la fonction Graphs.clone() qui renvoie cette erreur si le graphe passÃ© en argument est null.
 	 * 
 	 */
 	@Test
@@ -132,13 +132,13 @@ public class CoupleTest {
 	//			Tests getK()
 	//
 	
-	/* Ce test permet de vérifier que la méthode getK() de Couple fonctionne correctement dans les conditions suivantes :
+	/* Ce test permet de vÃ©rifier que la mÃ©thode getK() de Couple fonctionne correctement dans les conditions suivantes :
 	 * 
-	 * -> entrée standard
+	 * -> entrÃ©e standard
 	 * 
-	 * -> le résultat attendu de la part du programme est le k choisis dans la fonction setUp() ( soit 4 )
+	 * -> le rÃ©sultat attendu de la part du programme est le k choisis dans la fonction setUp() ( soit 4 )
 	 * 
-	 * -> le résultat obtenu est conforme aux attentes
+	 * -> le rÃ©sultat obtenu est conforme aux attentes
 	 * 
 	 */
 	@Test
@@ -146,15 +146,13 @@ public class CoupleTest {
 		assertEquals(c1.getK(), k1);
 	}
 	
-	/* Ce test permet de vérifier que la méthode getK() de Couple fonctionne correctement dans les conditions suivantes :
+	/* Ce test permet de vÃ©rifier que la mÃ©thode getK() de Couple fonctionne correctement dans les conditions suivantes :
 	 * 
-	 * -> entrée standard
+	 * -> entrÃ©e standard
 	 * 
-	 * -> le résultat attendu de la part du programme est le k choisis dans la fonction setUp() ( soit 6 )
+	 * -> le rÃ©sultat attendu de la part du programme est le k choisis dans la fonction setUp() ( soit 6 )
 	 * 
-	 * -> le résultat obtenu est différent des attentes, en effet, une erreur de type NullPointerException est levée, mais n'est pas gérée par la classe.
-	 * 
-	 * -> Ce problème est dû à la fonction Graphs.clone() qui renvoie cette erreur si le graphe passé en argument est null.
+	 * -> le rÃ©sultat obtenu est conforme aux attentes
 	 * 
 	 */
 	@Test
@@ -166,15 +164,15 @@ public class CoupleTest {
 	//			Tests getG()
 	//
 	
-	/* Ce test permet de vérifier que la méthode getG() de Couple fonctionne correctement dans les conditions suivantes :
+	/* Ce test permet de vÃ©rifier que la mÃ©thode getG() de Couple fonctionne correctement dans les conditions suivantes :
 	 * 
-	 * -> entrée standard
+	 * -> entrÃ©e standard
 	 * 
-	 * -> on teste avec un .toString() afin de comparer que les deux graphes soit identiques, biens que le graphe du couple ai été cloné
+	 * -> on teste avec un .toString() afin de comparer que les deux graphes soit identiques, biens que le graphe du couple ai Ã©tÃ© clonÃ©
 	 * 
-	 * -> le résultat attendu de la part du programme est que les deux graphes soit identiques
+	 * -> le rÃ©sultat attendu de la part du programme est que les deux graphes soit identiques
 	 * 
-	 * -> le résultat obtenu est conforme aux attentes
+	 * -> le rÃ©sultat obtenu est conforme aux attentes
 	 * 
 	 */
 	@Test
@@ -182,15 +180,15 @@ public class CoupleTest {
 		assertEquals(c1.getG().toString() , g1.toString());
 	}
 	
-	/* Ce test permet de vérifier que la méthode getG() de Couple fonctionne correctement dans les conditions suivantes :
+	/* Ce test permet de vÃ©rifier que la mÃ©thode getG() de Couple fonctionne correctement dans les conditions suivantes :
 	 * 
-	 * -> entrée standard
+	 * -> entrÃ©e standard
 	 * 
-	 * -> on teste avec un .toString() afin de comparer que les deux graphes soit identiques, biens que le graphe du couple ai été cloné
+	 * -> on teste avec un .toString() afin de comparer que les deux graphes soit identiques, biens que le graphe du couple ai Ã©tÃ© clonÃ©
 	 * 
-	 * -> le résultat attendu de la part du programme est que les deux graphes soit identiques
+	 * -> le rÃ©sultat attendu de la part du programme est que les deux graphes soit identiques
 	 * 
-	 * -> le résultat obtenu est conforme aux attentes
+	 * -> le rÃ©sultat obtenu est conforme aux attentes
 	 * 
 	 */
 	@Test
@@ -202,14 +200,14 @@ public class CoupleTest {
 	//			Tests afficherGraph()
 	//
 	
-	/* Ce test permet de vérifier que la méthode afficherGraph() de Couple fonctionne correctement dans les conditions suivantes :
+	/* Ce test permet de vÃ©rifier que la mÃ©thode afficherGraph() de Couple fonctionne correctement dans les conditions suivantes :
 	 * 
-	 * -> entrée standard
+	 * -> entrÃ©e standard
 	 * 
-	 * -> on teste uniquement d'appeller la méthode et on confirme le test si la fonction ne renvoie pas d'erreur
+	 * -> on teste uniquement d'appeller la mÃ©thode et on confirme le test si la fonction ne renvoie pas d'erreur
 	 * car cette fonction ne renvoie rien et ne modifie aucun attribut, aussi bien sur l'objet Couple que sur lobjet Graph du couple
 	 * 
-	 * -> le résultat obtenu est conforme aux attentes
+	 * -> le rÃ©sultat obtenu est conforme aux attentes
 	 * 
 	 */
 	@Test
@@ -218,14 +216,14 @@ public class CoupleTest {
 		assertFalse(1 == 2);
 	}
 	
-	/* Ce test permet de vérifier que la méthode afficherGraph() de Couple fonctionne correctement dans les conditions suivantes :
+	/* Ce test permet de vÃ©rifier que la mÃ©thode afficherGraph() de Couple fonctionne correctement dans les conditions suivantes :
 	 * 
-	 * -> entrée standard
+	 * -> entrÃ©e standard
 	 * 
-	 * -> on teste uniquement d'appeller la méthode et on confirme le test si la fonction ne renvoie pas d'erreur
+	 * -> on teste uniquement d'appeller la mÃ©thode et on confirme le test si la fonction ne renvoie pas d'erreur
 	 * car cette fonction ne renvoie rien et ne modifie aucun attribut, aussi bien sur l'objet Couple que sur l'objet Graph du couple
 	 * 
-	 * -> le résultat obtenu est conforme aux attentes
+	 * -> le rÃ©sultat obtenu est conforme aux attentes
 	 * 
 	 */
 	@Test
