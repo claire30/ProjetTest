@@ -23,23 +23,6 @@ public class RegleTest {
 	public void tearDown() throws Exception {
 	}
 	
-	/* Ce test permet de vérifier que la méthode <<insérer un nom ici>> fonctionne correctement dans les conditions suivantes :
-	 * 
-	 * -> l'entrée << est conforme aux attentes  // pose un problème ( décrire le problème ie: nb arrêtes < 0 ) >>
-	 * 
-	 * -> le résultat attendu de la part du programme est << une truc normal / lever une exception / règler l'erreur sans en informer ... >>
-	 * 
-	 * -> le résultat obtenu est << conforme aux attentes / différent des attentes ( décrire les différences ) >>
-	 * 
-	 * -> si résultat différent : qu'est ce qui cause ce problème ?
-	 */
-	@Test
-	public void test() {
-		fail("Not yet implemented");
-	}
-	
-	
-
 	
 //TEST GETTER
 	

@@ -6,37 +6,39 @@ import org.junit.Test;
 
 public class KernelTest {
 	
+	private Kernel k1;
+	private Kernel k2;
+	
 	/* Ceci est le setup, c'est ici que l'on va instancier et initialiser les variables de la classe test.
-	 * Comme le précise le @Before, ceci sera exécuté avant les tests
-	 * et permet d'avoir des variables instanciées pour pouvoir s'en servir dans les différents tests 
+	 * Comme le prÃ©cise le @Before, ceci sera exÃ©cutÃ© avant les tests
+	 * et permet d'avoir des variables instanciÃ©es pour pouvoir s'en servir dans les diffÃ©rents tests 
 	 */
 	@Before
 	public void setUp() throws Exception {
+		
+		k1 = new Kernel();
+		k2 = new Kernel();		
 	}
 
 	
-	/* Ceci est le close, c'est ici que l'on va fermer les variables de la classe test qui ont besoin de l'etre.
-	 * Comme le précise le @After, ceci sera exécuté après la fin de tous les tests
-	 * et permet d'éviter les fuites de mémoire où autre soucis.
-	 * Dans ce projet, nous n'avons pas de problème de ce type
-	 */	
-	@After
-	public void tearDown() throws Exception {
-	}
+	//
+	//			Test Constructeur
+	//
 	
-	/* Ce test permet de vérifier que la méthode <<insérer un nom ici>> fonctionne correctement dans les conditions suivantes :
+	/* Ce test permet de vÃ©rifier que le constructeur de Kernel fonctionne correctement
 	 * 
-	 * -> l'entrée << est conforme aux attentes  // pose un problème ( décrire le problème ie: nb arrêtes < 0 ) >>
+	 * -> le rÃ©sultat attendu de la part du programme est le que le Kernel ne soit pas null, et que sa liste de lrÃ¨gles non plus
 	 * 
-	 * -> le résultat attendu de la part du programme est << une truc normal / lever une exception / règler l'erreur sans en informer ... >>
-	 * 
-	 * -> le résultat obtenu est << conforme aux attentes / différent des attentes ( décrire les différences ) >>
-	 * 
-	 * -> si résultat différent : qu'est ce qui cause ce problème ?
+	 * -> le rÃ©sultat obtenu est conforme aux attentes
 	 */
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void testConstructeur() {
+		Kernel k = new Kernel();
+		
+		assertNotNull(k);
+		assertNotNull(k.liste);
+		
+		assertTrue(k.liste.size() == 0);
 	}
 
 }
