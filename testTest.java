@@ -1,42 +1,60 @@
 import static org.junit.Assert.*;
 
-import org.junit.After;
-import org.junit.Before;
+import org.graphstream.graph.Graph;
 import org.junit.Test;
 
-public class testTest {
-	
-	/* Ceci est le setup, c'est ici que l'on va instancier et initialiser les variables de la classe test.
-	 * Comme le précise le @Before, ceci sera exécuté avant les tests
-	 * et permet d'avoir des variables instanciées pour pouvoir s'en servir dans les différents tests 
-	 */
-	@Before
-	public void setUp() throws Exception {
-	}
 
+public class testTest {
+
+	private int sommetNormaux; 
+	private Graph g; 
+	private Graph g1;
 	
-	/* Ceci est le close, c'est ici que l'on va fermer les variables de la classe test qui ont besoin de l'etre.
-	 * Comme le précise le @After, ceci sera exécuté après la fin de tous les tests
-	 * et permet d'éviter les fuites de mémoire où autre soucis.
-	 * Dans ce projet, nous n'avons pas de problème de ce type
-	 */	
-	@After
-	public void tearDown() throws Exception {
+
+	public void setUp() throws Exception {
+		/*initialisation de sommets */
+		sommetNormaux=10; 
+		 
+		
+		
+
+		
 	}
 	
-	/* Ce test permet de vérifier que la méthode <<insérer un nom ici>> fonctionne correctement dans les conditions suivantes :
-	 * 
-	 * -> l'entrée << est conforme aux attentes  // pose un problème ( décrire le problème ie: nb arrêtes < 0 ) >>
-	 * 
-	 * -> le résultat attendu de la part du programme est << une truc normal / lever une exception / règler l'erreur sans en informer ... >>
-	 * 
-	 * -> le résultat obtenu est << conforme aux attentes / différent des attentes ( décrire les différences ) >>
-	 * 
-	 * -> si résultat différent : qu'est ce qui cause ce problème ?
+	
+	// TEST CONCERNANT LES ARETES DU GRAPHE
+	/*Ce test permet de vÃ©rifier le fonctionnements du gÃ©nÃ©rateur de graphe avec des un nombre d'aretes supÃ©rieur au nombre maxmimal d'aretes possible
+	 * on choisit de gÃ©nÃ©rer un graphe avec 10 sommets et 5000 arÃªtes
+	 * Le rÃ©sultat attendu est un nombre d'aretes non Ã©gals Ã  5000, le nombre d'aretes doit Ãªtre Ã©gal Ã  0
+	 * Le rÃ©sultat obtenu est conforme au rÃ©sulat attendu. 
+	 * Nous pouvons l'expliquer avec le code de la fonction gÃ©nÃ©rant le graphe. En effet, le nombre d'aretes Ã©tant trop grand, on ne rentre pas dans la boucle crÃ©ant les sommets et les aretes donc nous ne crÃ©ons pas d'aretes*/
+	@Test
+	public void testAretesHorsNormes() {
+		
+		g1=test.generate(sommetNormaux,5000); 
+		assertNotEquals("non Ã©gaux",g1.getEdgeCount(),5000);
+		assertEquals("sont Ã©gaux", g1.getEdgeCount(),0); 
+	}
+	
+	//Test CONCERNANT LES SOMMETS DU GRAPHE
+	
+	
+	/*Ce test permet de vÃ©rifier le fonctionnements du gÃ©nÃ©rateur de graphe avec des un nombre de sommets nÃ©gatif
+	 * on choisit de gÃ©nÃ©rer un graphe avec -10 sommets et 0 arÃªtes
+	 * Le rÃ©sultat attendu est un nombre de sommets non Ã©gals Ã  -10, le nombre de sommets doit Ãªtre Ã©gal Ã  0
+	 * Le rÃ©sultat obtenu est conforme au rÃ©sulat attendu. 
+	 * Nous pouvons l'expliquer avec le code de la fonction gÃ©nÃ©rant le graphe. En effet, avec un nombre de sommets nÃ©gatif, nous ne rentrons pas dans la boucle for permettant de crÃ©er les sommets donc on obtient au final 0 sommets
 	 */
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+
+	public void testSommetsHorsNormes() {
+		/* initialisation d'un graphe avec un nombre de sommets anomal */
+		g1=test.generate(-10, 0); 
+		assertNotEquals("relations vraie", g1.getNodeCount(),-10);
+		assertEquals("sont Ã©gaux", g1.getNodeCount(),0); 
 	}
+	
+
+
 
 }
