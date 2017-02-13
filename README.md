@@ -30,3 +30,13 @@ Pour ajouter org.graphstream dans le projet eclipse :
     -> "ok"
     
 4) Félicitation, tout est pret pour commencer à bosser !
+
+Des problèmes d'encodage des caractères entre Linux et Windows ?
+Par eclipse :
+      -> clic sur votre dossier Projet pour le sélectionner
+      -> alt+entrer
+      -> Onglet "Resource"
+      -> "Text file encoding"
+      -> "Other"
+      -> "UTF-8"
+Bravo, il n'y a désormais plus de problèmes d'encodge !
