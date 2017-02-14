@@ -221,7 +221,7 @@ public class testTest {
 
 	}
 
-	/*Ce test permet de vérifier l'unicité des aretes
+	/*Ce test permet de vérifier l'unicité des aretes sur un graphe complet
 	 * On génère un graphe complet d'ordre 3
 	 * Ce test va compter le nombre d'aretes et vérifier que ce nombre est égal au nombre d'aretes total. 
 	 * Ensuite comme chaque arete doit être unique, nous savons que pour une arete d'extrémité x y nous avons deux possibilité l'arete x-y ou l'arete y-x
@@ -244,6 +244,23 @@ public class testTest {
 		assertFalse(a5==a6);
 		
 
+	}
+	
+	/*
+	 * Ce test permet de vérifier qu'une adresse a un "ordre"
+	 * Pour cela, on va utiliser un graphe a 2 sommets ayant une arete donc le nombre d'aretes maximal sur ce graphe est de 1 aretes
+	 * L'arete peut donc soit être "0-1" soit "1-0". Pour montrer que l'arete a un "ordre", il faut donc verifier que a1(0-1) n'est pas égal à a2(1-0) et qu'une des deux aretes possible est nulle (c'est à dire pas créé) 
+	 * Le résultat est conforme aux attentes
+	 * 
+	 */
+	@Test
+	public void testUniciteAreteGrapheSimple() {
+		Graph g20=test.generate(2, 1);
+		Edge a1=g20.getEdge("0-1");
+		Edge a2=g20.getEdge("1-0"); 
+		
+		assertTrue(a1==null ||a2==null); 
+		assertNotEquals (a1,a2); 
 	}
 
 
