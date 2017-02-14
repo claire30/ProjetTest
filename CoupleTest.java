@@ -396,7 +396,15 @@ public class CoupleTest {
 	public void nonExistenceArete() {
 		assertTrue(g3.getEdge("2-3")==null ||g3.getEdge("3-2")==null); 
 	}
-
+	/*
+	 * Ce test permet de vérifier l'existence d'une arete
+	 * A partir d'un graphe g3, on va vérifier que l'arete 1-2 existe. Cette arête existe si la relation 1-2 ne vaut pas null mais que la relation 2-1 vaut null
+	 * Le résultat obtenu est conforme aux attentes. 
+	 */
+	@Test
+	public void ExistenceArete() {
+		assertTrue(g3.getEdge("1-2")!=null ||g3.getEdge("2-1")==null);
+	}
 	
 
 }
