@@ -1,5 +1,6 @@
 import static org.junit.Assert.*;
 
+import org.graphstream.graph.Edge;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
 import org.junit.Test;
@@ -42,12 +43,12 @@ public class testTest {
 		assertEquals("sont égaux", g4.getEdgeCount(), -5);
 
 	}
-	
+
 	@Test
 	public void testAretesNormes() {
 		Graph g5=test.generate(10,5); 
 		assertEquals("sont égaux", g5.getEdgeCount(),5);
-		
+
 	}
 
 
@@ -76,27 +77,27 @@ public class testTest {
 	@Test
 	public void testSommetOkAretesOk() {
 		Graph g4=test.generate(10, 1);
-		
+
 		assertEquals("sont égaux", g4.getNodeCount(), 10);
 	}
-	
+
 	/*
 	 * Ce test permet de vérifier le comportement du programme avec un nombre important de sommet
 	 * Le résultat attendu est une exception ou un nombre de sommet normalisé c'est à dire beaucoup plus petit pour ne pas avoir des problèmes de performances
 	 * Le résultat obtenu est une boucle infinie. La méthode assertEquals n'est jamais appelé. Nous pouvons expliqué cela à cause d'exceptions qui ne sont pas levées quand l'entier est trop grand
 	 * 
 	 */
-	
+
 	/*
 	@Test
 	public void testSommetGrand() {
 		Graph g7=test.generate(10000000, 1);
 		assertEquals("sont égaux", g7.getNodeCount(),10000000);
 	}
-	
-	*/
+
+	 */
 	//Test concernant les propriétés  du graphe 
-	
+
 	/* Ce test permet de vérifier que le nom du graphe est bien le même que celui indiqué dans le programme
 	 * Le résultat attendu doit être en marche
 	 * Le résultat obtenu est conforme au résultat attendu
@@ -106,7 +107,7 @@ public class testTest {
 		Graph g6=test.generate(10, 1);
 		assertEquals(g6.toString(), "EnMarche");
 	}
-	
+
 	/* Ce test permet de vérifier que le graphe créé n'est pas null
 	 * Le résultat attendu doit être un graphe qui ne fait pas référence à null
 	 * Le résultat obtenu est conforme aux attentes
@@ -115,9 +116,9 @@ public class testTest {
 	public void testGraphNull() {
 		Graph g10=test.generate(10, 1);
 		assertNotNull(g10);
-		
+
 	}
-	
+
 	/*Ce test permet de vérifier le comportement du programme lorsque le graphe n'est pas conforme aux normes (nombre d'aretes trop grand). 
 	 * Le résultat attendu est un graphe sans sommet ni aretes (juste initialisé avec son nom)
 	 *Le résultat est conforme aux attentes. Il est à noter que retourner un graphe vide n'est pas la seule solution possible
@@ -128,9 +129,9 @@ public class testTest {
 		Graph g11=test.generate(10, 200);
 		assertNotNull(g11);
 		assertEquals(g11.toString(), "EnMarche");
-		
+
 	}
-	
+
 	/*Ce test permet de vérifier le comportement du programme lorsque le graphe n'est pas conforme aux normes (sommets négatif)
 	 * Le résultat attendu est un graphe sans sommet ni aretes (juste initialisé avec son nom)
 	 *Le résultat est conforme aux attentes
@@ -141,12 +142,12 @@ public class testTest {
 		Graph g12=test.generate(-10, 0);
 		assertNotNull(g12);
 		assertEquals(g12.toString(), "EnMarche");
-				
-		
+
+
 	}
-	
+
 	//Test sur les degrés d'un sommet
-	
+
 	/*Ce test permet de vérifier le degré des sommets pour un graphe à 0 aretes
 	 * Nous allons saisir générer un graphe de degré 3 avec 0 sommets
 	 * Le résulat attendu est un degré 0 pour les 3 sommets 
@@ -162,9 +163,9 @@ public class testTest {
 		assertEquals("sont égaux", n2.getDegree(),0);
 		assertEquals("sont égaux", n3.getDegree(),0);
 	}
-	
+
 	/*
-	 * Ce test permet de vérifier le degré des sommets d'un graphe complet
+	 * Ce test permet de vérifier le degré des sommets d'un graphe complet et ainsi voir que chaque arete est présente une seule fois
 	 * Nous allons générer un graphe d'ordre 5, ayant le maximum d'aretes soit 10 aretes pour former un graphe complet
 	 * Le résultat attendu est un degré 4 pour tous les sommets
 	 * Le résultat obtenu est conforme au résultat attendu 
@@ -185,10 +186,10 @@ public class testTest {
 		assertEquals("sont égaux", n3.getDegree(),4);
 		assertEquals("sont égaux", n4.getDegree(),4);
 		assertEquals("sont égaux", n5.getDegree(),4);
-		
-		
+
+
 	}
-	
+
 	@Test
 	/*
 	 * Ce test permet de tester le mécanisme aléatoire de la génération de graphe 
@@ -202,7 +203,7 @@ public class testTest {
 		Node n1=g16.getNode("0");
 		Node n1b=g17.getNode("0"); 
 		assertNotEquals(n1.getDegree(), n1b.getDegree());
-		
+
 	}
 	/*
 	 * Ce test permet de vérifier que le degré d'un sommet est compris dans les normes
@@ -216,9 +217,34 @@ public class testTest {
 		Node n1=g18.getNode("0");
 		assertTrue("relations vraies", n1.getDegree()>=0 );
 		assertTrue("relations vraies", n1.getDegree()<=4);
-		
+
 	}
-	
+
+	/*Ce test permet de vérifier l'unicité des aretes
+	 * On génère un graphe complet d'ordre 3
+	 * Ce test va compter le nombre d'aretes et vérifier que ce nombre est égal au nombre d'aretes total. 
+	 * Ensuite comme chaque arete doit être unique, nous savons que pour une arete d'extrémité x y nous avons deux possibilité l'arete x-y ou l'arete y-x
+	 * Il faut donc vérifier que ces aretes ne soit pas égales pour être sur qu'une seule arete est créée. 
+	 * Nous allons tester l'unicité des aretes pour chaque arete possible. Nous sommes surs que deux possibilités d'aretes ne peuvent pas être égales puisque nous avons générer un graphe complet (entre deux sommets, il y a forcémment une arete)
+	 * Le résultat obtenu est conforme aux attentes. 
+	 */
+	@Test
+	public void testUniciteArete() {
+		Graph g19=test.generate(3, 3);
+		assertEquals(g19.getEdgeCount(),3);
+		Edge a1=g19.getEdge("0-1");
+		Edge a2=g19.getEdge("1-0"); 
+		assertFalse(a1==a2); 
+		Edge a3=g19.getEdge("1-2");
+		Edge a4=g19.getEdge("2-1");
+		assertFalse(a3==a4);
+		Edge a5=g19.getEdge("2-0");
+		Edge a6=g19.getEdge("0-2");
+		assertFalse(a5==a6);
+		
+
+	}
+
 
 
 
