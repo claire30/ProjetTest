@@ -89,14 +89,14 @@ public class testTest {
 	 * 
 	 */
 
-	
+
 	@Test (timeout=10000)
 	public void testSommetGrand() {
 		Graph g7=test.generate(10000000, 1);
 		assertEquals("sont égaux", g7.getNodeCount(),10000000);
 	}
 
-	 
+
 	//Test concernant les propriétés  du graphe 
 
 	/* Ce test permet de vérifier que le nom du graphe est bien le même que celui indiqué dans le programme
@@ -242,10 +242,10 @@ public class testTest {
 		Edge a5=g19.getEdge("2-0");
 		Edge a6=g19.getEdge("0-2");
 		assertFalse(a5==a6);
-		
+
 
 	}
-	
+
 	/*
 	 * Ce test permet de vérifier qu'une adresse a un "ordre"
 	 * Pour cela, on va utiliser un graphe a 2 sommets ayant une arete donc le nombre d'aretes maximal sur ce graphe est de 1 aretes
@@ -258,11 +258,38 @@ public class testTest {
 		Graph g20=test.generate(2, 1);
 		Edge a1=g20.getEdge("0-1");
 		Edge a2=g20.getEdge("1-0"); 
-		
+
 		assertTrue(a1==null ||a2==null); 
 		assertNotEquals (a1,a2); 
 	}
 
+	/*
+	 * Ce test permet de vérifier qu'une arête qui n'existe pas vaut null
+	 * Nous utilisons un graphe d'ordre 2 ayant 0 aretes et regardons l'existence d'une relation 0-1
+	 * Le résultat est conforme aux attente et 0-1 vaut mieux Null
+	 */
+	@Test 
+	public void testAreteInexistante() {
+		Graph g21=test.generate(2, 0);
+		Edge a1=g21.getEdge("0-1");
+		assertNull(a1); 
+	}
+
+
+	/*
+	 * Ce test permet de vérifier la condition d'ajout d'une arete dans le graphe s'il n'existe (graph.getEdge(nom)==null && graph.getEdge(nomBis)==null)
+	 * POur cela nous allons prendre un graphe ayant deux sommets et 0 aretes et nous allons vérifier que la relation 0-1 peut être ajouté
+	 * Pour cela, nous vérifier si nom==null et nombis==null. D'après le code du programme nom= node1+"-"+node2; et nombis=node2+"-"+node1
+	 * Le résultat obtenu est conforme aux attenres, l'arete peut être créée. 
+	 * 
+	 */
+	@Test
+	public void testAretesCreation() {
+		Graph g22=test.generate(2, 0);
+		Edge a1=g22.getEdge("0-1");
+		Edge a2=g22.getEdge("1-0");
+		assertTrue(a1==null && a2==null);
+	}
 
 
 
