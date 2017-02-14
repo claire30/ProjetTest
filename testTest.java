@@ -32,12 +32,12 @@ public class testTest {
 
 	/*Ce test permet de vérifier le comportement du programme avec des arêtes négatif
 	 * on choisir de générer un graphe à 10 sommets et -5 arêtes
+	 * Nous fixons une durée de temps de 10 secondes
 	 * Le résultat attendu est un nombre d'aretes normalisé c'est à dire compris entre 0 et le nombre d'arretes maximal soit (n(n-1))/2 où n représente l'ordre du graphe
-	 * Le résultat obtenu n'est pas conforme aux attentes puisque le test ne termine jamais (pas de temps affichés et la console eclipse est toujours en activité )
-	 * L'assertEquals n'est donc jamais réalisé dans ce test 
+	 * Le résultat obtenu n'est pas conforme aux attentes puisque le test ne termine jamais (même en allongeant la durée du temps passé en paramètre)
 	 * Nous pouvons expliquer cette boucle infinie lors de la création des aretes. En effet, nous allons rentrer dans la boucle permettant de créer des aretes. Cependant le compteur étant initialisé à 0, la boucle while (cpt !=edge) ne s'arrete jamais lorsque le nombre d'aretes est négatif. En effet le compteur va cesser d'augmenter au cours du programme
 	 */
-	@Test 
+	@Test (timeout=10000)
 	public void testSommetsOkAretesNon() {
 		Graph g4=test.generate(10,-5); 
 		assertEquals("sont égaux", g4.getEdgeCount(), -5);
@@ -83,19 +83,20 @@ public class testTest {
 
 	/*
 	 * Ce test permet de vérifier le comportement du programme avec un nombre important de sommet
+	 * nous fixons 10 secondes de test
 	 * Le résultat attendu est une exception ou un nombre de sommet normalisé c'est à dire beaucoup plus petit pour ne pas avoir des problèmes de performances
 	 * Le résultat obtenu est une boucle infinie. La méthode assertEquals n'est jamais appelé. Nous pouvons expliqué cela à cause d'exceptions qui ne sont pas levées quand l'entier est trop grand
 	 * 
 	 */
 
-	/*
-	@Test
+	
+	@Test (timeout=10000)
 	public void testSommetGrand() {
 		Graph g7=test.generate(10000000, 1);
 		assertEquals("sont égaux", g7.getNodeCount(),10000000);
 	}
 
-	 */
+	 
 	//Test concernant les propriétés  du graphe 
 
 	/* Ce test permet de vérifier que le nom du graphe est bien le même que celui indiqué dans le programme

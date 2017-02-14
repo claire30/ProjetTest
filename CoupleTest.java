@@ -1,5 +1,6 @@
 import static org.junit.Assert.*;
 
+import org.graphstream.graph.Edge;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
 import org.graphstream.graph.implementations.Graphs;
@@ -11,7 +12,7 @@ import org.junit.Test;
 
 
 public class CoupleTest {
-	
+
 	private Couple c1;
 	private Graph g1;
 	private int k1;
@@ -22,6 +23,7 @@ public class CoupleTest {
 	private Couple c3;
 	private int k3;
 	private Couple c4;
+	private Graph g4; 
 
 	/* Ceci est le setup, c'est ici que l'on va instancier et initialiser les variables de la classe test.
 	 * Comme le précise le @Before, ceci sera exécuté avant les tests
@@ -36,7 +38,7 @@ public class CoupleTest {
 		g2 = new SingleGraph("graph de test ");
 		k2 = 6;
 		c2 = new Couple(g2, k2);
-		
+
 		/* initialisation d'un graphe de test avec sommets et aretes */
 		g3=new SingleGraph("graphe test k grand ");
 		for(int i=0; i<6; i++) {
@@ -45,32 +47,31 @@ public class CoupleTest {
 			//on nomme le sommet avec la valeur du i en caractère
 			a.addAttribute("ui.label",String.valueOf(i));
 		}
-		
+
 		/*création des aretes,
 		 * Exemple g3.addEdge("1-2","1","2");
 		 *  1-2 est le nom de la relation, 1 le premier sommet et 2 le deuxième sommt
 		 * 
 		 */
-		
+
 		g3.addEdge("1-2","1","2");
 		g3.addEdge("2-4","2","4");
 		g3.addEdge("5-4","5","4");
-		
-		
-		
-		
-		
+
+
+
+
+
 		k3=1000; 
-		
+
 		/* création de couples de test avec différents k */
 		c3=new Couple(g3,k3);
 		c4=new Couple (g3,k1);
-		
-		
 
+		
 	}
 
-	
+
 	/* Ceci est le close, c'est ici que l'on va fermer les variables de la classe test qui ont besoin de l'etre.
 	 * Comme le précise le @After, ceci sera exécuté après la fin de tous les tests
 	 * et permet d'éviter les fuites de mémoire où autre soucis.
@@ -79,7 +80,7 @@ public class CoupleTest {
 	@After
 	public void tearDown() throws Exception {
 	}
-	
+
 	/* Ce test permet de vérifier que la méthode <<insérer un nom ici>> fonctionne correctement dans les conditions suivantes :
 	 * 
 	 * -> l'entrée << est conforme aux attentes  // pose un problème ( décrire le problème ie: nb arrêtes < 0 ) >>
@@ -95,11 +96,11 @@ public class CoupleTest {
 		// Un morceau de code assertChose(truc);
 		assertTrue(true);
 	}
-	
+
 	//
 	//			Tests Constructeur
 	//
-	
+
 	/* Ce test permet de vérifier que le constructeur de Couple fonctionne correctement dans les conditions suivantes :
 	 * 
 	 * -> l'entrée est conforme aux attentes, c'est à dire un graphe g quelconque, et un k strictement positif
@@ -114,7 +115,7 @@ public class CoupleTest {
 		Couple c = new Couple(g, 4);
 		assertTrue(c.getK() == 4);
 	}
-	
+
 	/* Ce test permet de vérifier que le constructeur de Couple fonctionne correctement dans les conditions suivantes :
 	 * 
 	 * -> l'entrée est conforme aux attentes, c'est à dire un graphe g quelconque, et un k strictement positif
@@ -130,7 +131,7 @@ public class CoupleTest {
 		assertNotSame(c.getG(), g);
 		assertSame(c.getG().toString(), g.toString());
 	}
-	
+
 	/* Ce test permet de vérifier que le constructeur de Couple fonctionne correctement dans les conditions suivantes :
 	 * 
 	 * -> l'entrée pose un problème, c'est à dire un graphe g quelconque, et un k négatif
@@ -148,8 +149,8 @@ public class CoupleTest {
 		Couple c = new Couple(g, -4);
 		assertNotEquals(-4, c.getK());
 	}
-	
-	
+
+
 	/*ce test permet de vérifier que le fonctionnement du Constructeur de Couple
 	 * 
 	 * ->paramètres d'entrée : un graphe quelconque g3, et un k supérieur à l'ordre du graphe g3
@@ -164,14 +165,14 @@ public class CoupleTest {
 	 */
 	@Test
 	public void testCoupleKGrand() {
-		
+
 		assertEquals("k égal ordre graphe", c3.getK(), g3.getNodeCount());
 		//g3.getNodeCount renvoie le nombre de sommmet du graphe donc ici 6
-		
+
 	}
-	
-	
-	
+
+
+
 	/* Ce test permet de vérifier que le constructeur de Couple fonctionne correctement dans les conditions suivantes :
 	 * 
 	 * -> l'entrée pose un problème, c'est à dire un graphe g null, et un k strictement positif
@@ -190,11 +191,11 @@ public class CoupleTest {
 		Couple c = new Couple(null, 4);
 		assertNotEquals(c.getG(), null);
 	}
-	
+
 	//
 	//			Tests getK()
 	//
-	
+
 	/* Ce test permet de vérifier que la méthode getK() de Couple fonctionne correctement dans les conditions suivantes :
 	 * 
 	 * -> entrée standard
@@ -208,7 +209,7 @@ public class CoupleTest {
 	public void getKNormal() {
 		assertEquals(c1.getK(), k1);
 	}
-	
+
 	/* Ce test permet de vérifier que la méthode getK() de Couple fonctionne correctement dans les conditions suivantes :
 	 * 
 	 * -> entrée standard
@@ -222,13 +223,13 @@ public class CoupleTest {
 	public void getK2Normal() {
 		assertEquals(c2.getK(), k2);
 	}
-	
+
 	/*Test concernant l'utilisation de la méthode getK
 	 * ->entrée : un graphe g3 quelconque ainsi qu'un paramètre k négatif
 	 * Le résultat attendu est une normalisation de k, c'est à dire que k doit être compris entre 0 et l'ordre du graphe inclus
 	 * Le résultat obtenu n'est pas conforme aux attentes puisque le k n'est pas modifié, il n'y pas eu de normalisation du paramètre
 	 */
-	
+
 	@Test 
 	public void testGetKNégatif() {
 		Couple c= new Couple (g3, -4);
@@ -242,11 +243,11 @@ public class CoupleTest {
 	public void testGetKGrand() {
 		assertEquals("doivent être égaux", c3.getK(),g3.getNodeCount()); 
 	}
-	
+
 	//
 	//			Tests getG()
 	//
-	
+
 	/* Ce test permet de vérifier que la méthode getG() de Couple fonctionne correctement dans les conditions suivantes :
 	 * 
 	 * -> entrée standard
@@ -258,13 +259,13 @@ public class CoupleTest {
 	 * -> le résultat obtenu est conforme aux attentes
 	 * 
 	 */
-	
-	
+
+
 	@Test
 	public void getGNormal() {
 		assertEquals(c1.getG().toString() , g1.toString());
 	}
-	
+
 	/* Ce test permet de vérifier que la méthode getG() de Couple fonctionne correctement dans les conditions suivantes :
 	 * 
 	 * -> entrée standard
@@ -280,7 +281,7 @@ public class CoupleTest {
 	public void getG2Normal() {
 		assertSame(c2.getG().toString() , g2.toString());
 	}
-	
+
 	/* Ce test permet de vérifier que le graphe créé (avec des sommets) n'est pas nul
 	 * Le résultat attendu est que le graphe créé ne fait pas référence à null
 	 * Le résultat obtenu est conforme au attentes
@@ -289,7 +290,7 @@ public class CoupleTest {
 	public void getG3NotNull() {
 		assertNotNull(c3.getG());
 	}
-	
+
 	/*Ce test permet de vérifier que le graphe créé (sans sommets) n'est pas null
 	 *Le résultat attendu est que le graphe créé ne fait pas référence à null
 	 * Le résultat obtenu est conforme au attentes
@@ -298,11 +299,11 @@ public class CoupleTest {
 	public void getG1NotNull(){
 		assertNotNull(c1.getG());
 	}
-	
+
 	//
 	//			Tests afficherGraph()
 	//
-	
+
 	/* Ce test permet de vérifier que la méthode afficherGraph() de Couple fonctionne correctement dans les conditions suivantes :
 	 * 
 	 * -> entrée standard
@@ -318,7 +319,7 @@ public class CoupleTest {
 		c1.afficherGraph();
 		assertFalse(1 == 2);
 	}
-	
+
 	/* Ce test permet de vérifier que la méthode afficherGraph() de Couple fonctionne correctement dans les conditions suivantes :
 	 * 
 	 * -> entrée standard
@@ -334,8 +335,8 @@ public class CoupleTest {
 		c2.afficherGraph();
 		assertFalse(1 == 2);
 	}
-	
-	
+
+
 	/*Test sur le graphe G
 	 * 
 	 * 
@@ -348,7 +349,7 @@ public class CoupleTest {
 	public void testSommet() {
 		assertEquals("sommets égaux", c3.getG().getNodeCount(),6);
 	}
-	
+
 	/*ce test permet de vérifier que le graphe créé (ensemble de sommets vide) comporte bien 0 sommets
 	 * Le résultat obtenu est conforme aux attentes. 
 	 */
@@ -356,8 +357,8 @@ public class CoupleTest {
 	public void testSommetGraphVide() {
 		assertEquals("sommets égaux",c1.getG().getNodeCount(),0); 
 	}
-	
-	
+
+
 	/* ce test permet de vérifier le nombre d'aretes d'un graphe vide 
 	 * Le résultat attendu est 0
 	 * Le résultat obtenu est conforme au résultat attendu
@@ -366,7 +367,7 @@ public class CoupleTest {
 	public void testAretesGraphVide() {
 		assertEquals("aretes égales", c1.getG().getEdgeCount(),0);
 	}
-	
+
 	/* ce test permet de vérifir le nombre d'aretes d'un graphe non vide
 	 * le résultat attendu est que le nombre d'aretes du graphe soit conforme aux arretes que nous avons créé (3)
 	 * Le résultat obtenu est conforme au résultat attendu. 
@@ -375,7 +376,7 @@ public class CoupleTest {
 	public void testAretesGraph() {
 		assertEquals("aretes égales", c3.getG().getEdgeCount(),3);
 	}
-	
+
 	/* ce test permet de vérifier le degré d'un sommet
 	 * Le résultat attendu doit correspondre au nombre de voisin du sommet(ici 2)
 	 * Le résultat obtenu est conforme au résultat attendu
@@ -384,7 +385,18 @@ public class CoupleTest {
 	public void NbDegreSommet() {
 		Node a =c3.getG().getNode("2"); 
 		assertTrue("relations vraies", a.getDegree()==2 );
-		
+
 	}
+	/*
+	 * Ce test permet de vérifier qu'une arete n'existe pas
+	 * Pour créer une arete nous avons deux possiblités x-y et y-x, nous vérifions que les deux possiblités retourne null
+	 * Le test est conforme aux attentes
+	 */
+	@Test
+	public void nonExistenceArete() {
+		assertTrue(g3.getEdge("2-3")==null ||g3.getEdge("3-2")==null); 
+	}
+
 	
+
 }
