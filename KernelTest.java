@@ -620,6 +620,7 @@ public class KernelTest {
 	 * Nous nous attendons à ce que le sommet "0" de degré 0 ne soit pas supprimé
 	 * Le résultat n'est pas conforme aux attentes, le sommet est supprimé. 
 	 * En effet, dans la boucle, il n'y a pas de condition si k est négatif
+	 * De plus dans la classe règle, la fonction appliquerRègle ne gère pas le cas k négatif pour la règle r=0
 	 */
 	
 	@Test
@@ -648,23 +649,20 @@ public class KernelTest {
 		
 		assertEquals(cRes.getK(), c1.getK() -1);
 	}
-	
 	/*
-	 * Ce test permet de vérifier le nombre de sommet du graphe du couple obtenu en appliquant la règle 1 avec un k négatif
-	 * Nous nous attendons à un nombre de sommet inchangé
-	 * Le résultat obtenu est différent des attentes puisque le nombre de sommets du graphe change.
-	 * En effet dans la fonction appliquerRegleB, il n'y a pas de condition sur k, et des règles sont appliqués même si k est négatif
-	 * 
+	 * Ce test permet de vérifier le comportement de la fonction appliquerRègle avec un k négatif et la règle 1
+	 * Le sommet pouvant être suppprimé est le sommet 6 car il est le seul voisin du sommet 8 de degré 1
+	 * Nous nous attendons à aucun changement (même k, même nombre de sommet donc pas de suppression)
+	 * Le résultat est conforme aux attentes. Nous pouvons expliquer ceci grâce à la fonction appliquer règle de Regle qui vérifie la condition k>0 avant de supprimer un sommet et de diminuer le k 
 	 */
-	
-	/* IL MARCHE PAS LUI 
-	@Test
-	public void testAppliquerRegleB1KNegSommet() {
+	@Test 
+	public void testAppliquerRegleB1KNeg() {
 		Couple cRes = keg1.appliquerRegleB(test1);
-		assertEquals(cRes.getG().getNodeCount(), test1.getG().getNodeCount());
-	
+		assertTrue(cRes.getG().getNodeCount() == test1.getG().getNodeCount());
+		assertNotNull(cRes.getG().getNode("6"));
+		assertEquals(cRes.getK(), test1.getK());
+		
 	}
-	*/
 	/*
 	 * Ce test permet de vérifier que la fonction appliquerRegleB de Kernel fonctionne correctement
 	 * 
@@ -684,7 +682,25 @@ public class KernelTest {
 		
 		assertEquals(cRes.getK(), c2.getK() -1);
 	}
+	/*
+	 * Ce test permet de vérifier le comportement de la fonction appliquerRègle avec un k négatif et la règle 2
+	 * Tous les sommets peuvent être supprimés car ils sont de tous de degré supérieur à k+1=0
+	 * Nous nous attendons à aucun changement (même k, même nombre de sommet donc pas de suppression)
+	 * Le résultat est conforme aux attentes. Nous pouvons expliquer ceci grâce à la fonction appliquer règle de Regle qui vérifie la condition k>0 avant de supprimer un sommet et de diminuer le k 
+	 */
 	
+	@Test 
+	public void testAppliquerRegleB2KNeg() {
+		Couple cRes = keg2.appliquerRegleB(test2);
+		assertTrue(cRes.getG().getNodeCount() == test2.getG().getNodeCount());
+		assertNotNull(cRes.getG().getNode("0"));
+		assertNotNull(cRes.getG().getNode("1"));
+		assertNotNull(cRes.getG().getNode("2"));
+		assertNotNull(cRes.getG().getNode("3"));
+		assertNotNull(cRes.getG().getNode("4"));
+		assertEquals(cRes.getK(), test2.getK());
+		
+	}
 	/*
 	 * Ce test permet de vérifier que la fonction appliquerRegleB de Kernel fonctionne correctement
 	 * 
@@ -828,6 +844,7 @@ public class KernelTest {
 		
 		assertEquals(cRes.getK(), c1.getK());
 	}
+	
 	
 	/*
 	 * Ce test permet de vérifier que la fonction appliquerString de Kernel fonctionne correctement
