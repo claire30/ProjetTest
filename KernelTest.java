@@ -16,7 +16,6 @@ public class KernelTest {
 
 	private Graph g1;
 	private Graph g2;
-
 	private int k1;
 	private int k2;
 
@@ -585,6 +584,7 @@ public class KernelTest {
 		assertNotNull(cRes.getG().getNode("6"));
 		
 		assertEquals(cRes.getK(), c1.getK());
+		
 	}
 	
 	
@@ -1040,6 +1040,20 @@ public class KernelTest {
 		assertEquals(cRes.getG().toString(),c1.getG().toString());
 		
 		assertFalse(cRes.getK() != c1.getK());
+	}
+	/*
+	 * Ce test permet de vérifier que la fonction appliquerString de Kernel fonctionne correctement
+	 * 
+	 * -> on vérifie si, en passant un couple null au kernel, celui-ci nous renvoie un couple non null ou pas
+	 * 
+	 * -> la méthode renvoie un null pointeur exception
+	 * 
+	 */
+	@Test
+	public void testAppliquerCoupleNull() {
+		Couple cRes = Kernel.appliquerString(null, "0");
+		
+		assertNotNull(cRes);
 	}
 	
 
