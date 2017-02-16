@@ -7,7 +7,10 @@ import org.graphstream.graph.implementations.Graphs;
 import org.graphstream.graph.implementations.SingleGraph;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.Timeout;
+
 
 
 
@@ -25,10 +28,19 @@ public class CoupleTest {
 	private Couple c4;
 	private Graph g4; 
 
+	private Graph gGrand; 
+	private Couple grand; 
+	
+	
+	private Graph gGrand2; 
+	private Couple gGrandtest; 
+	
+	
 	/* Ceci est le setup, c'est ici que l'on va instancier et initialiser les variables de la classe test.
 	 * Comme le précise le @Before, ceci sera exécuté avant les tests
 	 * et permet d'avoir des variables instanciées pour pouvoir s'en servir dans les différents tests 
 	 */
+	
 	@Before
 	public void setUp() throws Exception {
 		/*initialisation de graphes vides de test et de couples*/
@@ -38,9 +50,8 @@ public class CoupleTest {
 		g2 = new SingleGraph("graph de test ");
 		k2 = 6;
 		c2 = new Couple(g2, k2);
-
 		/* initialisation d'un graphe de test avec sommets et aretes */
-		g3=new SingleGraph("graphe test k grand ");
+		g3=new SingleGraph("graphe test k  ");
 		for(int i=0; i<6; i++) {
 			//on ajoute des sommets au graphe en convertissant les valeurs en String 
 			Node a = g3.addNode(String.valueOf(i));
@@ -67,9 +78,12 @@ public class CoupleTest {
 		/* création de couples de test avec différents k */
 		c3=new Couple(g3,k3);
 		c4=new Couple (g3,k1);
-
+		
+		
+		
 		
 	}
+	
 
 
 	/* Ceci est le close, c'est ici que l'on va fermer les variables de la classe test qui ont besoin de l'etre.
@@ -77,9 +91,7 @@ public class CoupleTest {
 	 * et permet d'éviter les fuites de mémoire où autre soucis.
 	 * Dans ce projet, nous n'avons pas de problème de ce type
 	 */	
-	@After
-	public void tearDown() throws Exception {
-	}
+	
 
 	/* Ce test permet de vérifier que la méthode <<insérer un nom ici>> fonctionne correctement dans les conditions suivantes :
 	 * 
@@ -91,6 +103,9 @@ public class CoupleTest {
 	 * 
 	 * -> si résultat différent : qu'est ce qui cause ce problème ?
 	 */
+	
+	
+	
 	@Test
 	public void unNomSignificatif() {
 		// Un morceau de code assertChose(truc);
@@ -150,6 +165,8 @@ public class CoupleTest {
 		assertNotEquals(-4, c.getK());
 	}
 
+	
+
 
 	/*ce test permet de vérifier que le fonctionnement du Constructeur de Couple
 	 * 
@@ -167,7 +184,7 @@ public class CoupleTest {
 	public void testCoupleKGrand() {
 
 		assertEquals("k égal ordre graphe", c3.getK(), g3.getNodeCount());
-		//g3.getNodeCount renvoie le nombre de sommmet du graphe donc ici 6
+		
 
 	}
 
@@ -240,6 +257,7 @@ public class CoupleTest {
 	 * Le résultat atendu est une normalisation de k c'est à dire que k doit être égal à l'ordre d graphe
 	 * Le résultat obtenu n'est pas conforme aux attentes puisque le k n'est pas modifié, il n'y pas eu de normalisation
 	 */
+	@Test
 	public void testGetKGrand() {
 		assertEquals("doivent être égaux", c3.getK(),g3.getNodeCount()); 
 	}
@@ -317,6 +335,7 @@ public class CoupleTest {
 	@Test
 	public void afficherGraph1Normal() {
 		c1.afficherGraph();
+	
 		assertFalse(1 == 2);
 	}
 
@@ -406,5 +425,58 @@ public class CoupleTest {
 		assertTrue(g3.getEdge("1-2")!=null ||g3.getEdge("2-1")==null);
 	}
 	
+	//TEST DE TEMPS AVEC DES PARAMETRES PLUTOT GRAND 
+	//(les initialisations se font dans les fonctions car sinon le timeout ne fonctionne pas)
+	
+	
+	
+	
+	/*
+	 * Ce test permet de vérifier la performance du constructeur, il peut varier selon les ordinateur
+	 * Nous mettons une durée de 10 secondes avec un graphe de 1 100 000 sommets et un k de 10 00 000. 
+	 * Le constructeur met plus de 10 secondes ce qui passe le test en erreur. 
+	 * Si nous refaissons le test avec 900 000 sommets, le constructeur s'exécute en moins de 10 secondes. Les performances de cette méthode sont donc très satisfaisantes
+	 */
+	
+	@Test (timeout=10000) 
+	public void testConstructeurGrand() {
+		gGrand=new SingleGraph("graphe test");
+		for(int i=0; i<1100000; i++) {
+			//on ajoute des sommets au graphe en convertissant les valeurs en String 
+			Node a = gGrand.addNode(String.valueOf(i));
+			//on nomme le sommet avec la valeur du i en caractère
+			a.addAttribute("ui.label",String.valueOf(i));
+		}
+		/*
+		 * Initialisation d'un grouple à grande valeur 
+		 */
+		grand=new Couple(gGrand,1100000);
+		Couple test=new Couple(gGrand, 1100000);
+		assertNotNull(test);
+	}
+	
+		
+	/*
+	 * Ce test permet de vérifier les performances concernant l'affichage d'un graphe d'un couple
+	 *Nous fixons une durée de 10 seconds et ave un graphe de 700 000 sommets, l'affichage dure plus de 10 secondes et le test passe en erreur
+	 *Si nous effectuons le test avec 500 000 sommets, l'affichage dure moins de 10 secondes. Les performances sont donc satisfaisantes
+	 */
+	@Test(timeout=10000)
+	public void testAffichage() {
+		Graph gGrand2=new SingleGraph("graphe test");
+		for(int i=0; i<700000; i++) {
+			//on ajoute des sommets au graphe en convertissant les valeurs en String 
+			Node a = gGrand2.addNode(String.valueOf(i));
+			//on nomme le sommet avec la valeur du i en caractère
+			a.addAttribute("ui.label",String.valueOf(i));
+		}
+		
+		gGrandtest=new Couple(gGrand2,10);
+		
+		gGrandtest.afficherGraph();
+		assertTrue(true);
+	}
+	
+
 
 }
