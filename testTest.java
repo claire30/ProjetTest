@@ -3,6 +3,7 @@ import static org.junit.Assert.*;
 import org.graphstream.graph.Edge;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
+import org.junit.Before;
 import org.junit.Test;
 
 
@@ -10,7 +11,7 @@ public class testTest {
 
 
 
-
+	@Before 
 	public void setUp() throws Exception {
 
 	}
@@ -291,6 +292,46 @@ public class testTest {
 		assertTrue(a1==null && a2==null);
 	}
 
-
+	//TEST DE PERFORMANCE
+	/*
+	 * Ces tests fournissent une indication mais ne donnent pas toujours le même résultat. En effet, il dépend de la JVM et aussi du nombre d'idérations de la fonction generate qui change à chaque test puisqu'elle est aléatoire
+	 */
+	
+	
+	/*
+	 *Ce test permet de vérifier la performance de la fonction générer graphe 
+	 *Nous testons avec un graphe à 7 000 000 et 1 arêtes. Le test s'effectue dans le temps demandé
+	 *Mais il ne crée aucun sommet du graphe ce qui n'est pas conforme à ce qu'on peut attendre c'est à dire un graphe à 7 000 000 de sommets
+	 Il faut donc controler les valeurs, d'autant plus que sur l'interface, l'utilisateur peut saisir sa valeur qui sera utilisée dans cette fonction 
+	 **/
+	@Test(timeout=10000)
+	public void testGenererGraphe2() {
+		Graph GTEST2=test.generate(7000000,1);
+		assertEquals(GTEST2.getNodeCount(),0);
+		assertEquals(GTEST2.getNodeCount(),700000);
+		
+	}
+	/*
+	 * Ce test permet de vérifier la performance de la fonction générer graphe
+	 * Nous testons avec un graphe à 3 000 000 de sommets et 0 aretes. Le test dépasse 10 secondes et passe en ereur
+	 * En testant avec 2 000 000 de sommets, le test est en dessous de 10 secondes. 
+	 * Les performances sont donc satisfaisantes
+	 */
+	@Test(timeout=10000)
+	public void testGenererGraphe3() {
+		Graph GTEST2=test.generate(3000000,0);
+	}
+	
+	/*Ce test permet de vérifier la performance de la fonction générer graphe
+	 * Nous testons avec un graphe à 2 000 000 sommets et 900 000 arêtes. Lors de notre test, le test dépasse 10 secondes donc il passe en erreur
+	 * En testant avec 2 000 000 sommets et 100 000 arêtes, le test est en dessous de 10 secondes
+	 * Les performances sont donc satisfaisantes
+	 * 
+	 */
+	@Test(timeout=10000)
+	public void testGenererGraphe4() {
+		Graph GTEST4=test.generate(2000000,900000);
+	}
+		
 
 }
