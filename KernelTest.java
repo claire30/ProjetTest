@@ -1032,9 +1032,9 @@ public class KernelTest {
 	@Test 
 	public void testRegleNegString() {
 		Couple cRes = Kernel.appliquerString(c1, "-0");
-	
+
 		assertNull(cRes.getG().getNode("0"));
-		
+
 		assertTrue(cRes.getG().getNodeCount() == c1.getG().getNodeCount() -1);
 		assertEquals(cRes.getK(), c1.getK());
 
@@ -1093,7 +1093,7 @@ public class KernelTest {
 		Graph gtest = new SingleGraph("graphe g1");
 
 
-		
+
 		for (int i = 0; i < 30; i++) {
 			gtest.addNode(i + "");
 		}
@@ -1137,7 +1137,7 @@ public class KernelTest {
 		Graph gtest = new SingleGraph("graphe g1");
 
 
-		
+
 		for (int i = 0; i < 100000 ; i++) {
 			gtest.addNode(i + "");
 		}
@@ -1166,7 +1166,7 @@ public class KernelTest {
 		}
 		Couple cRes = keg0test.appliquerRegleB(c0test);
 	}
-	
+
 	/*
 	 * Ce test permet de vérifier la performance de la fonction appliquer String
 	 * Nous allons regarder le temps d'application d'une règle 0. Si nous appliquons cette règle sur un graphe à 30 sommets (avec 20 sommets de degré0), le test met plus de 10 secondes et passe en erreu
@@ -1179,7 +1179,7 @@ public class KernelTest {
 		Graph gtest = new SingleGraph("graphe g1");
 
 
-		
+
 		for (int i = 0; i < 30 ; i++) {
 			gtest.addNode(i + "");
 		}
@@ -1204,8 +1204,32 @@ public class KernelTest {
 		Couple c0test=new Couple(gtest,2);
 		Couple cRes =Kernel.appliquerString(c0test,"0");
 	}
+/*
+ *Ce test permet de vérifier la performance de la fonction ajout règle
+ * Nous allons tester d'ajouter 400 000 règle 0 en moins de 10 seconde. Ce test passe en erreur après 10 secondes
+ * Si nous relançons le test en essayant de créer 200 000 règles, le test ne passe pas en erreur en moins de 10 secondes
+ * Il est donc possible de créer 200 000 règles rapidemment. 
+ * 
+ * Ensuite, nous avons relancé le test de la fonction AjoutRegle en mettant en commentaire la ligne Kernel, c'est à dire que nous avons testé la fonction ajoutRegle comme ceci
+ * public void ajoutRegle(int r){
+		Regle r1 = new Regle(r);
+		// l'opération contains n'est pas utilisé pour le deuxième test 
+		//if(!this.liste.contains(r1))  */
+/*		this.liste.add(r1);
+	}
+	 Sans le contains, nous pouvons créer 25 000 000 de règle sans problème de temps 
+	 La vérification faite par containte prend énormément de temps car il faut parcourir toutes l'arraylist à chaque itération. De plus comme le contains est mal défini, il est inutile et provoque une perte de temps
+ *    
+ */
+	@Test(timeout=10000)
+	public void testPerfAjoutRegle() {
+		Kernel keg0test = new Kernel();
+		for(int i=0; i<400000 ; i++) {
+			keg0test.ajoutRegle(0);
+		}	
+		
+	}
 }
-
 
 
 
