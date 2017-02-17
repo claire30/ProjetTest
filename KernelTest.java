@@ -1062,7 +1062,7 @@ public class KernelTest {
 	 */
 	
 	/*
-	 * Ce test permet de vérifier la performance de la fonction appliquer règle avec a règle 0
+	 * Ce test permet de vérifier la performance de la fonction appliquer règle avec la règle 0
 	 * Nous voulons appliquer 1 fois la règle 0 sur un graphe à 30 sommets
 	 * Nous indiquons une durée de 10 secondes et le test passe en erreur car il prend plus de 10 secondes
 	 * Cette fonction n'est pas très performante. 
@@ -1105,6 +1105,49 @@ public class KernelTest {
 		Couple cRes = keg0test.appliquerRegle(c0test);
 	}
 
+	/*
+	 * Ce test permet de vérifier la performance de la fonction appliquer règleB avec la règle 0
+	 * Nous voulons appliquer 100 000 fois la règle 0 sur un graphe à 100 000 sommets
+	 * Nous indiquons une durée de 10 secondes et le test passe en erreur car il prend plus de 10 secondes
+	 * 
+	 * Nous pouvons relancer le test avec un graphe à 10 000 sommets et en souhaitant appliquer 10 000 fois la règle 0
+	 * La fonction s'exécute en moins de 10 secondes. AppliquerRegleB est donc beaucoup plus performante niveau temps que la fonction appliquerRegle. 
+	 * AppliquerRegleB n'affiche pas le graphe après chaque règle ce qui fait gagner du temps et la rend plus performante que AppliquerRegle qui affiche le graphe à chaque itération
+	 */
+	@Test(timeout=10000)
+	public void testAppliquerRegleB() {
+		Graph gtest = new SingleGraph("graphe g1");
+		
+
+		// on crée un graphe g1 de 1000 sommets
+		for (int i = 0; i < 10000; i++) {
+			gtest.addNode(i + "");
+		}
+
+		// et on rajoute des aretes
+
+		gtest.addEdge("1-7", "1", "7");
+		gtest.addEdge("1-9", "1", "9");
+		gtest.addEdge("2-4", "2", "4");
+		gtest.addEdge("2-5", "2", "5");
+		gtest.addEdge("3-5", "3", "5");
+		gtest.addEdge("3-7", "3", "7");
+		gtest.addEdge("4-5", "4", "5");
+		gtest.addEdge("4-6", "4", "6");
+		gtest.addEdge("5-7", "5", "7");		
+		gtest.addEdge("5-6", "5", "6");
+		gtest.addEdge("6-7", "6", "7");
+		gtest.addEdge("6-8", "6", "8");
+		gtest.addEdge("6-9", "6", "9");
+		gtest.addEdge("7-9", "7", "9");
+		
+		Couple c0test=new Couple(gtest,2);
+		Kernel keg0test = new Kernel();
+		for(int i=0; i<10000; i++) {
+			keg0test.ajoutRegle(0);
+		}
+		Couple cRes = keg0test.appliquerRegleB(c0test);
+	}
 }
 
 
