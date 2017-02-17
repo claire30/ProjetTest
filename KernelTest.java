@@ -1063,7 +1063,7 @@ public class KernelTest {
 	
 	/*
 	 * Ce test permet de vérifier la performance de la fonction appliquer règle avec a règle 0
-	 * Nous voulons appliquer 1 fois la règle 0 sur un graphe à 1000 sommets
+	 * Nous voulons appliquer 1 fois la règle 0 sur un graphe à 30 sommets
 	 * Nous indiquons une durée de 10 secondes et le test passe en erreur car il prend plus de 10 secondes
 	 * Cette fonction n'est pas très performante. 
 	 * Nous pouvons relancer le test avec un graphe à 15 sommets, il y a donc 6 sommets de degré 0, le test passe en dessous de 10 secondes
@@ -1076,7 +1076,7 @@ public class KernelTest {
 		
 
 		// on crée un graphe g1 de 1000 sommets
-		for (int i = 0; i < 15; i++) {
+		for (int i = 0; i < 30; i++) {
 			gtest.addNode(i + "");
 		}
 
