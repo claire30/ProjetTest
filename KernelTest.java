@@ -1056,6 +1056,54 @@ public class KernelTest {
 		assertNotNull(cRes);
 	}
 	
+	/*
+	 * Test de performance
+	 * Ces tests donnent une indication de temps mais dépendent de la JVM 
+	 */
+	
+	/*
+	 * Ce test permet de vérifier la performance de la fonction appliquer règle avec a règle 0
+	 * Nous voulons appliquer 1 fois la règle 0 sur un graphe à 1000 sommets
+	 * Nous indiquons une durée de 10 secondes et le test passe en erreur car il prend plus de 10 secondes
+	 * Cette fonction n'est pas très performante. 
+	 * Nous pouvons relancer le test avec un graphe à 15 sommets, il y a donc 6 sommets de degré 0, le test passe en dessous de 10 secondes
+	 * La fonction s'exécute en moins de 10 secondes seulement sur de petits graphes 
+	 */
+	
+	@Test(timeout=10000)
+	public void testAppliquerRegle() {
+		Graph gtest = new SingleGraph("graphe g1");
+		
+
+		// on crée un graphe g1 de 1000 sommets
+		for (int i = 0; i < 15; i++) {
+			gtest.addNode(i + "");
+		}
+
+		// et on rajoute des aretes
+
+		gtest.addEdge("1-7", "1", "7");
+		gtest.addEdge("1-9", "1", "9");
+		gtest.addEdge("2-4", "2", "4");
+		gtest.addEdge("2-5", "2", "5");
+		gtest.addEdge("3-5", "3", "5");
+		gtest.addEdge("3-7", "3", "7");
+		gtest.addEdge("4-5", "4", "5");
+		gtest.addEdge("4-6", "4", "6");
+		gtest.addEdge("5-7", "5", "7");		
+		gtest.addEdge("5-6", "5", "6");
+		gtest.addEdge("6-7", "6", "7");
+		gtest.addEdge("6-8", "6", "8");
+		gtest.addEdge("6-9", "6", "9");
+		gtest.addEdge("7-9", "7", "9");
+		
+		Couple c0test=new Couple(gtest,2);
+		Kernel keg0test = new Kernel();
+		for(int i=0; i<1; i++) {
+			keg0test.ajoutRegle(0);
+		}
+		Couple cRes = keg0test.appliquerRegle(c0test);
+	}
 
 }
 
