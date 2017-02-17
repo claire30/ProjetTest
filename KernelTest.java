@@ -1120,7 +1120,7 @@ public class KernelTest {
 		
 
 		// on crée un graphe g1 de 1000 sommets
-		for (int i = 0; i < 10000; i++) {
+		for (int i = 0; i < 100000 ; i++) {
 			gtest.addNode(i + "");
 		}
 
@@ -1143,7 +1143,7 @@ public class KernelTest {
 		
 		Couple c0test=new Couple(gtest,2);
 		Kernel keg0test = new Kernel();
-		for(int i=0; i<10000; i++) {
+		for(int i=0; i<100000 ; i++) {
 			keg0test.ajoutRegle(0);
 		}
 		Couple cRes = keg0test.appliquerRegleB(c0test);
