@@ -37,7 +37,7 @@ public class KernelTest {
 
 		keg0 = new Kernel();
 		keg0.ajoutRegle(0);
-		
+
 		keg1 = new Kernel();
 		keg1.ajoutRegle(1);
 
@@ -71,24 +71,24 @@ public class KernelTest {
 		g1.addEdge("6-8", "6", "8");
 		g1.addEdge("6-9", "6", "9");
 		g1.addEdge("7-9", "7", "9");
-		
+
 		for(int i=0; i<5; i++) {
 			g2.addNode(i+"");
 		}
-		
+
 		g2.addEdge("0-1", "0", "1");
 		g2.addEdge("0-2", "0", "2");
 		g2.addEdge("0-3", "0", "3");
 		g2.addEdge("0-4", "0", "4");
 		g2.addEdge("1-2", "1", "2");
 		g2.addEdge("3-4", "3", "4");
-		
+
 		c1 = new Couple(g1, k1);
 		c2 = new Couple(g2, k2);
 		test1 =new Couple (g1,-1); 
 		test2=new Couple(g2,-1);
-		
-	
+
+
 	}
 
 	//
@@ -139,7 +139,7 @@ public class KernelTest {
 		assertEquals(ke1.liste.size(), ke2.liste.size());
 	}
 
-	
+
 	/*
 	 * Ce test permet de vérifier que la fonction ajoutRegle de Kernel
 	 * fonctionne correctement
@@ -278,14 +278,14 @@ public class KernelTest {
 	 */
 	@Test
 	public void testAppliquerRegle0() {
-		
+
 		Couple cRes = keg0.appliquerRegle(c1);
-		
+
 		assertTrue(cRes.getG().getNodeCount() == c1.getG().getNodeCount() -1);
-		
+
 		assertNull(cRes.getG().getNode("0"));
 		assertNotNull(cRes.getG().getNode("6"));
-		
+
 		assertEquals(cRes.getK(), c1.getK());
 	}
 	/* Ce test permet de vérifier l'application de la règle 0 avec un k négatif
@@ -294,19 +294,19 @@ public class KernelTest {
 	 * Le k doit être 0
 	 * Le résultat est conforme aux attentes et donc l'application de la règle 0 avec un k négatif est traité pour ne pas renvoyer d'erreur 
 	 */
-	
+
 	@Test
 	public void testAppliquerRegle0KNegatif() {
 		Couple cRes = keg0.appliquerRegle(test1);
-		
+
 		assertTrue(cRes.getG().getNodeCount() == 2);
 		assertNotNull(cRes.getG().getNode("2"));
 		assertNotNull(cRes.getG().getNode("1"));
-		
+
 		assertEquals(cRes.getK(),0);
 	}
 
-	
+
 	/*
 	 * Ce test permet de vérifier que la fonction appliquerRegle de Kernel fonctionne correctement
 	 * 
@@ -318,34 +318,34 @@ public class KernelTest {
 	@Test
 	public void testAppliquerRegle1() {
 		Couple cRes = keg1.appliquerRegle(c1);
-		
+
 		assertTrue(cRes.getG().getNodeCount() == c1.getG().getNodeCount() -1);
-		
+
 		assertNull(cRes.getG().getNode("6"));
 		assertNotNull(cRes.getG().getNode("0"));
-		
+
 		assertEquals(cRes.getK(), c1.getK() -1);
 	}
-	
-	
+
+
 	/* Ce test permet de vérifier l'application de la règle 1 avec un k négatif
 	 * Nous testons avec un graphe g1 et un k =-1, 
 	 *Pour l'application de la règle 1 on a le sommet 6 du graphe g1, car il est le seul voisin du sommet 8, de degrès 1
 	 *  Nous nous attendons à un graphe de degré 2 ayant deux sommets ("1" et  "2")
 	 * Le résultat est conforme aux attentes et donc l'application de la règle 1 avec un k négatif est traité pour ne pas renvoyer d'erreur 
 	 */
-	
+
 	@Test
 	public void testAppliquerRegle1KNegatif() {
 		Couple cRes = keg1.appliquerRegle(test1);
-		
+
 		assertTrue(cRes.getG().getNodeCount() == 2);
 		assertNotNull(cRes.getG().getNode("2"));
 		assertNotNull(cRes.getG().getNode("1"));
-		
+
 		assertEquals(cRes.getK(),0);
 	}
-	
+
 	/*
 	 * Ce test permet de vérifier que la fonction appliquerRegle de Kernel fonctionne correctement
 	 * 
@@ -354,39 +354,39 @@ public class KernelTest {
 	 * -> Le résultat est bien celui attendu, c'est à dire que le sommet 0 est supprimé du graphe, et le k est décrémenté
 	 * 
 	 */
-	
+
 
 	@Test
 	public void testAppliquerRegle2() {
 		Couple cRes = keg2.appliquerRegle(c2);
-		
+
 		assertTrue(cRes.getG().getNodeCount() == c2.getG().getNodeCount() -1);
-		
+
 		assertNull(cRes.getG().getNode("0"));
 		assertNotNull(cRes.getG().getNode("1"));
-		
+
 		assertEquals(cRes.getK(), c2.getK() -1);
 	}
-	
+
 	/* Ce test permet de vérifier l'application de la règle 2 avec un k négatif
 	 * Nous testons avec un graphe g1 et un k =-1, 
 	 *	Tous les sommets peuvent être supprimables si le cas k négatif n'est pas géré. En effet, le sommet 0 est de degré 4>k+1 et les sommets 1,2,3,4 sont de degré 2>k+1
 	 *  Nous nous attendons à un graphe de degré 2 ayant deux sommets ("1" et  "2")
 	 * Le résultat est conforme aux attentes et donc l'application de la règle 2 avec un k négatif est traité pour ne pas renvoyer d'erreur 
 	 */
-	
+
 	@Test
 	public void testAppliquerRegle2KNegatif() {
 		Couple cRes = keg2.appliquerRegle(test2);
-		
+
 		assertTrue(cRes.getG().getNodeCount() == 2);
 		assertNotNull(cRes.getG().getNode("2"));
 		assertNotNull(cRes.getG().getNode("1"));
-		
+
 		assertEquals(cRes.getK(),0);
 	}
-	
-/*
+
+	/*
 	 * Ce test permet de vérifier que la fonction appliquerRegle de Kernel fonctionne correctement
 	 * 
 	 * -> on vérifie si, en passant un couple null au kernel, celui-ci nous renvoie un couple non null ou pas
@@ -397,10 +397,10 @@ public class KernelTest {
 	@Test
 	public void testAppliquerRegleNull() {
 		Couple cRes = keg1.appliquerRegle(null);
-		
+
 		assertNotNull(cRes);
 	}
-	
+
 
 	/*
 	 * Ce test permet de vérifier que la fonction appliquerRegle de Kernel fonctionne correctement
@@ -416,12 +416,12 @@ public class KernelTest {
 	@Test
 	public void testAppliquerRegle0Inutile() {
 		Couple cRes = keg0.appliquerRegle(c2);
-		
+
 		assertEquals(cRes.getG().toString(),c2.getG().toString());
-		
+
 		assertFalse(cRes.getK() != c2.getK());
 	}
-	
+
 	/*
 	 * Ce test permet de vérifier que la fonction appliquerRegle de Kernel fonctionne correctement
 	 * 
@@ -436,12 +436,12 @@ public class KernelTest {
 	@Test
 	public void testAppliquerRegle1Inutile() {
 		Couple cRes = keg1.appliquerRegle(c2);
-		
+
 		assertEquals(cRes.getG().toString(),c2.getG().toString());
-		
+
 		assertFalse(cRes.getK() != c2.getK());
 	}
-	
+
 	/*
 	 * Ce test permet de vérifier que la fonction appliquerRegle de Kernel fonctionne correctement
 	 * 
@@ -456,12 +456,12 @@ public class KernelTest {
 	public void testAppliquerRegle2Inutile() {
 		Couple cInutile2 = new Couple(g2, 10);
 		Couple cRes = keg2.appliquerRegle(cInutile2);
-		
+
 		assertEquals(cRes.getG().toString(),cInutile2.getG().toString());
-		
+
 		assertFalse(cRes.getK() != cInutile2.getK());
 	}
-	
+
 	/*
 	 * Ce test permet de vérifier que la fonction appliquerRegle de Kernel fonctionne, même si le Kernel est "incorrect"
 	 * 
@@ -475,14 +475,14 @@ public class KernelTest {
 	public void testAppliquerRegleInexistante() {
 		Kernel keInexist = new Kernel();
 		keInexist.ajoutRegle(300);
-		
+
 		Couple cRes = keInexist.appliquerRegle(c1);
-		
+
 		assertEquals(cRes.getG().toString(),c1.getG().toString());
-		
+
 		assertFalse(cRes.getK() != c1.getK());
 	}
-	
+
 	/*
 	 * Ce test permet de vérifier que la fonction appliquerRegle de Kernel fonctionne, même si le Kernel est "incorrect"
 	 * 
@@ -498,14 +498,14 @@ public class KernelTest {
 		keInexist.ajoutRegle(3);
 		keInexist.ajoutRegle(4);
 		keInexist.ajoutRegle(5);
-		
+
 		Couple cRes = keInexist.appliquerRegle(c1);
-		
+
 		assertEquals(cRes.getG().toString(),c1.getG().toString());
-		
+
 		assertFalse(cRes.getK() != c1.getK());
 	}
-	
+
 	//
 	// Test kernelisation
 	//
@@ -525,11 +525,11 @@ public class KernelTest {
 	 */
 	@Test
 	public void testKernelisationOui() {
-		
+
 		assertTrue(Kernel.kernelization(c2));
-		
+
 	}
-	
+
 	/*
 	 * Ce test permet de vérifier que la fonction kernelisation de Kernel
 	 * fonctionne corerctement
@@ -541,11 +541,11 @@ public class KernelTest {
 	 */
 	@Test
 	public void testKernelisationNon() {
-		
+
 		assertFalse(Kernel.kernelization(c1));
-		
+
 	}
-	
+
 	/*
 	 * Ce test permet de vérifier que la fonction kernelisation de Kernel
 	 * fonctionne correctement
@@ -557,11 +557,11 @@ public class KernelTest {
 	 */
 	@Test
 	public void testKernelisationNull() {
-		
+
 		assertFalse(Kernel.kernelization(null));
-		
+
 	}
-	
+
 	//
 	// Test appliquerRegleB
 	//
@@ -577,20 +577,20 @@ public class KernelTest {
 	@Test
 	public void testAppliquerRegleB0() {
 		Couple cRes = keg0.appliquerRegleB(c1);
-		
+
 		assertTrue(cRes.getG().getNodeCount() == c1.getG().getNodeCount() -1);
-		
+
 		assertNull(cRes.getG().getNode("0"));
 		assertNotNull(cRes.getG().getNode("6"));
-		
-		assertEquals(cRes.getK(), c1.getK());
-		
-	}
-	
-	
 
-	
-	
+		assertEquals(cRes.getK(), c1.getK());
+
+	}
+
+
+
+
+
 	/*
 	 * Ce test permet de vérifier le fonctionnement du programme avec un k négatif
 	 * Nous appliquons la règle 0 au couple test
@@ -601,9 +601,9 @@ public class KernelTest {
 	public void testAppliquerRegleB0KNeg() {
 		Couple cRes = keg0.appliquerRegleB(test1);
 		assertEquals(cRes.getK(), test1.getK());
-		
+
 	}
-	
+
 	/*
 	 * Ce test permet de vérifier le nombre de sommet du graphe du couple obtenu en appliquant la règle 0 avec un k négatif
 	 * Nous nous attendons à un nombre de sommet inchangé
@@ -622,14 +622,14 @@ public class KernelTest {
 	 * En effet, dans la boucle, il n'y a pas de condition si k est négatif
 	 * De plus dans la classe règle, la fonction appliquerRègle ne gère pas le cas k négatif pour la règle r=0
 	 */
-	
+
 	@Test
 	public void testAppliquerRegleB0KNegNull() {
 		Couple cRes = keg0.appliquerRegleB(test1);
 		assertNotNull(cRes.getG().getNode("0"));
 	}
-	
-	
+
+
 	/*
 	 * Ce test permet de vérifier que la fonction appliquerRegleB de Kernel fonctionne correctement
 	 * 
@@ -641,12 +641,12 @@ public class KernelTest {
 	@Test
 	public void testAppliquerRegleB1() {
 		Couple cRes = keg1.appliquerRegleB(c1);
-		
+
 		assertTrue(cRes.getG().getNodeCount() == c1.getG().getNodeCount() -1);
-		
+
 		assertNull(cRes.getG().getNode("6"));
 		assertNotNull(cRes.getG().getNode("0"));
-		
+
 		assertEquals(cRes.getK(), c1.getK() -1);
 	}
 	/*
@@ -661,7 +661,7 @@ public class KernelTest {
 		assertTrue(cRes.getG().getNodeCount() == test1.getG().getNodeCount());
 		assertNotNull(cRes.getG().getNode("6"));
 		assertEquals(cRes.getK(), test1.getK());
-		
+
 	}
 	/*
 	 * Ce test permet de vérifier que la fonction appliquerRegleB de Kernel fonctionne correctement
@@ -674,12 +674,12 @@ public class KernelTest {
 	@Test
 	public void testAppliquerRegleB2() {
 		Couple cRes = keg2.appliquerRegleB(c2);
-		
+
 		assertTrue(cRes.getG().getNodeCount() == c2.getG().getNodeCount() -1);
-		
+
 		assertNull(cRes.getG().getNode("0"));
 		assertNotNull(cRes.getG().getNode("1"));
-		
+
 		assertEquals(cRes.getK(), c2.getK() -1);
 	}
 	/*
@@ -688,7 +688,7 @@ public class KernelTest {
 	 * Nous nous attendons à aucun changement (même k, même nombre de sommet donc pas de suppression)
 	 * Le résultat est conforme aux attentes. Nous pouvons expliquer ceci grâce à la fonction appliquer règle de Regle qui vérifie la condition k>0 avant de supprimer un sommet et de diminuer le k 
 	 */
-	
+
 	@Test 
 	public void testAppliquerRegleB2KNeg() {
 		Couple cRes = keg2.appliquerRegleB(test2);
@@ -699,7 +699,7 @@ public class KernelTest {
 		assertNotNull(cRes.getG().getNode("3"));
 		assertNotNull(cRes.getG().getNode("4"));
 		assertEquals(cRes.getK(), test2.getK());
-		
+
 	}
 	/*
 	 * Ce test permet de vérifier que la fonction appliquerRegleB de Kernel fonctionne correctement
@@ -712,10 +712,10 @@ public class KernelTest {
 	@Test
 	public void testAppliquerRegleBNull() {
 		Couple cRes = keg1.appliquerRegleB(null);
-		
+
 		assertNotNull(cRes);
 	}
-	
+
 
 	/*
 	 * Ce test permet de vérifier que la fonction appliquerRegleB de Kernel fonctionne correctement
@@ -731,12 +731,12 @@ public class KernelTest {
 	@Test
 	public void testAppliquerRegleB0Inutile() {
 		Couple cRes = keg0.appliquerRegleB(c2);
-		
+
 		assertEquals(cRes.getG().toString(),c2.getG().toString());
-		
+
 		assertFalse(cRes.getK() != c2.getK());
 	}
-	
+
 	/*
 	 * Ce test permet de vérifier que la fonction appliquerRegleB de Kernel fonctionne correctement
 	 * 
@@ -751,12 +751,12 @@ public class KernelTest {
 	@Test
 	public void testAppliquerRegleB1Inutile() {
 		Couple cRes = keg1.appliquerRegleB(c2);
-		
+
 		assertEquals(cRes.getG().toString(),c2.getG().toString());
-		
+
 		assertFalse(cRes.getK() != c2.getK());
 	}
-	
+
 	/*
 	 * Ce test permet de vérifier que la fonction appliquerRegleB de Kernel fonctionne correctement
 	 * 
@@ -771,12 +771,12 @@ public class KernelTest {
 	public void testAppliquerRegleB2Inutile() {
 		Couple cInutile2 = new Couple(g2, 10);
 		Couple cRes = keg2.appliquerRegleB(cInutile2);
-		
+
 		assertEquals(cRes.getG().toString(),cInutile2.getG().toString());
-		
+
 		assertFalse(cRes.getK() != cInutile2.getK());
 	}
-	
+
 	/*
 	 * Ce test permet de vérifier que la fonction appliquerRegleB de Kernel fonctionne, même si le Kernel est "incorrect"
 	 * 
@@ -790,14 +790,14 @@ public class KernelTest {
 	public void testAppliquerRegleBInexistante() {
 		Kernel keInexist = new Kernel();
 		keInexist.ajoutRegle(300);
-		
+
 		Couple cRes = keInexist.appliquerRegleB(c1);
-		
+
 		assertEquals(cRes.getG().toString(),c1.getG().toString());
-		
+
 		assertFalse(cRes.getK() != c1.getK());
 	}
-	
+
 	/*
 	 * Ce test permet de vérifier que la fonction appliquerRegleB de Kernel fonctionne, même si le Kernel est "incorrect"
 	 * 
@@ -813,14 +813,14 @@ public class KernelTest {
 		keInexist.ajoutRegle(3);
 		keInexist.ajoutRegle(4);
 		keInexist.ajoutRegle(5);
-		
+
 		Couple cRes = keInexist.appliquerRegleB(c1);
-		
+
 		assertEquals(cRes.getG().toString(),c1.getG().toString());
-		
+
 		assertFalse(cRes.getK() != c1.getK());
 	}
-	
+
 	//
 	// Test appliquerString
 	//
@@ -836,16 +836,16 @@ public class KernelTest {
 	@Test
 	public void testAppliquerString0() {
 		Couple cRes = Kernel.appliquerString(c1,"0");
-		
+
 		assertTrue(cRes.getG().getNodeCount() == c1.getG().getNodeCount() -1);
-		
+
 		assertNull(cRes.getG().getNode("0"));
 		assertNotNull(cRes.getG().getNode("6"));
-		
+
 		assertEquals(cRes.getK(), c1.getK());
 	}
-	
-	
+
+
 	/*
 	 * Ce test permet de vérifier que la fonction appliquerString de Kernel fonctionne correctement
 	 * 
@@ -857,15 +857,15 @@ public class KernelTest {
 	@Test
 	public void testAppliquerString1() {
 		Couple cRes = Kernel.appliquerString(c1,"1");
-		
+
 		assertTrue(cRes.getG().getNodeCount() == c1.getG().getNodeCount() -1);
-		
+
 		assertNull(cRes.getG().getNode("6"));
 		assertNotNull(cRes.getG().getNode("0"));
-		
+
 		assertEquals(cRes.getK(), c1.getK() -1);
 	}
-	
+
 	/*
 	 * Ce test permet de vérifier que la fonction appliquerString de Kernel fonctionne correctement
 	 * 
@@ -877,15 +877,15 @@ public class KernelTest {
 	@Test
 	public void testAppliquerString2() {
 		Couple cRes = Kernel.appliquerString(c2, "2");
-		
+
 		assertTrue(cRes.getG().getNodeCount() == c2.getG().getNodeCount() -1);
-		
+
 		assertNull(cRes.getG().getNode("0"));
 		assertNotNull(cRes.getG().getNode("1"));
-		
+
 		assertEquals(cRes.getK(), c2.getK() -1);
 	}
-	
+
 	/*
 	 * Ce test permet de vérifier que la fonction appliquerString de Kernel fonctionne correctement
 	 * 
@@ -897,10 +897,10 @@ public class KernelTest {
 	@Test
 	public void testAppliquerStringNull() {
 		Couple cRes = Kernel.appliquerString(c1, null);
-		
+
 		assertNotNull(cRes);
 	}
-	
+
 
 	/*
 	 * Ce test permet de vérifier que la fonction appliquerString de Kernel fonctionne correctement
@@ -916,12 +916,12 @@ public class KernelTest {
 	@Test
 	public void testAppliquerString0Inutile() {
 		Couple cRes = Kernel.appliquerString(c2, "0");
-		
+
 		assertEquals(cRes.getG().toString(),c2.getG().toString());
-		
+
 		assertFalse(cRes.getK() != c2.getK());
 	}
-	
+
 	/*
 	 * Ce test permet de vérifier que la fonction appliquerString de Kernel fonctionne correctement
 	 * 
@@ -936,12 +936,12 @@ public class KernelTest {
 	@Test
 	public void testAppliquerString1Inutile() {
 		Couple cRes = Kernel.appliquerString(c2, "1");
-		
+
 		assertEquals(cRes.getG().toString(),c2.getG().toString());
-		
+
 		assertFalse(cRes.getK() != c2.getK());
 	}
-	
+
 	/*
 	 * Ce test permet de vérifier que la fonction appliquerString de Kernel fonctionne correctement
 	 * 
@@ -956,12 +956,12 @@ public class KernelTest {
 	public void testAppliquerString2Inutile() {
 		Couple cInutile2 = new Couple(g2, 10);
 		Couple cRes = Kernel.appliquerString(cInutile2, "2");
-		
+
 		assertEquals(cRes.getG().toString(),cInutile2.getG().toString());
-		
+
 		assertFalse(cRes.getK() != cInutile2.getK());
 	}
-	
+
 	/*
 	 * Ce test permet de vérifier que la fonction appliquerString de Kernel fonctionne, même si le Kernel est "incorrect"
 	 * 
@@ -973,14 +973,14 @@ public class KernelTest {
 	 */
 	@Test
 	public void testAppliquerStringInexistante() {
-		
+
 		Couple cRes = Kernel.appliquerString(c1, "5");
-		
+
 		assertEquals(cRes.getG().toString(),c1.getG().toString());
-		
+
 		assertFalse(cRes.getK() != c1.getK());
 	}
-	
+
 	/*
 	 * Ce test permet de vérifier que la fonction appliquerString de Kernel fonctionne, même si le Kernel est "incorrect"
 	 * 
@@ -992,14 +992,14 @@ public class KernelTest {
 	 */
 	@Test
 	public void testAppliquerStringInexistantes() {
-		
+
 		Couple cRes = Kernel.appliquerString(c1, "345");
-		
+
 		assertEquals(cRes.getG().toString(),c1.getG().toString());
-		
+
 		assertFalse(cRes.getK() != c1.getK());
 	}
-	
+
 	/*
 	 * Ce test permet de vérifier que la fonction appliquerString de Kernel fonctionne, même si le Kernel est "incorrect"
 	 * 
@@ -1013,32 +1013,48 @@ public class KernelTest {
 	 */
 	@Test
 	public void testAppliquerStringMiInexistantes() {
-		
+
 		Couple cRes = Kernel.appliquerString(c1, "3045");
-		
+
 		assertTrue(cRes.getG().getNodeCount() == c1.getG().getNodeCount() -1);
-		
+
 		assertNull(cRes.getG().getNode("0"));
 		assertNotNull(cRes.getG().getNode("6"));
-		
+
 		assertEquals(cRes.getK(), c1.getK());
 	}
+
+	/*  -> on vérifie que la règle 0 est appliqué quand nous saissisons -0
+	 * On applique cette règle sur le graphe g1 donc nous devons vérifier que le sommet 0 de degré 0 est supprimé et que - est ignoré
+	 * Le résultat est conforme aux attentes, le sommet 0 est supprimé, et le - est bien ignoré
+	 * 
+	 */
+	@Test 
+	public void testRegleNegString() {
+		Couple cRes = Kernel.appliquerString(c1, "-0");
 	
+		assertNull(cRes.getG().getNode("0"));
+		
+		assertTrue(cRes.getG().getNodeCount() == c1.getG().getNodeCount() -1);
+		assertEquals(cRes.getK(), c1.getK());
+
+	}
 	/*
 	 * Ce test permet de vérifier que la fonction appliquerString de Kernel fonctionne, même si le Kernel est "incorrect"
 	 * 
 	 * Pour celà, on crée un string qui ne contient pas des nombres, mais des lettres
 	 * 
 	 * -> on vérifie si une exception est crée, ou si le programme gère l'erreur, et ne fait rien
+	 * Le résultat est conforme aux attentes, toto n'est pas traité car la méthode getNumeric value appliqué sur la chaine de caractère toto renvoie un nombre négatif donc toto est ignoré
 	 * 
 	 */
 	@Test
 	public void testAppliquerStringLettres() {
-		
+
 		Couple cRes = Kernel.appliquerString(c1, "toto");
-		
+
 		assertEquals(cRes.getG().toString(),c1.getG().toString());
-		
+
 		assertFalse(cRes.getK() != c1.getK());
 	}
 	/*
@@ -1052,15 +1068,17 @@ public class KernelTest {
 	@Test
 	public void testAppliquerCoupleNull() {
 		Couple cRes = Kernel.appliquerString(null, "0");
-		
+
 		assertNotNull(cRes);
 	}
-	
+
+
+
 	/*
 	 * Test de performance
 	 * Ces tests donnent une indication de temps mais dépendent de la JVM 
 	 */
-	
+
 	/*
 	 * Ce test permet de vérifier la performance de la fonction appliquer règle avec la règle 0
 	 * Nous voulons appliquer 1 fois la règle 0 sur un graphe à 30 sommets
@@ -1069,13 +1087,13 @@ public class KernelTest {
 	 * Nous pouvons relancer le test avec un graphe à 15 sommets, il y a donc 6 sommets de degré 0, le test passe en dessous de 10 secondes
 	 * La fonction s'exécute en moins de 10 secondes seulement sur de petits graphes 
 	 */
-	
+
 	@Test(timeout=10000)
 	public void testAppliquerRegle() {
 		Graph gtest = new SingleGraph("graphe g1");
-		
 
-		// on crée un graphe g1 de 1000 sommets
+
+		
 		for (int i = 0; i < 30; i++) {
 			gtest.addNode(i + "");
 		}
@@ -1096,7 +1114,7 @@ public class KernelTest {
 		gtest.addEdge("6-8", "6", "8");
 		gtest.addEdge("6-9", "6", "9");
 		gtest.addEdge("7-9", "7", "9");
-		
+
 		Couple c0test=new Couple(gtest,2);
 		Kernel keg0test = new Kernel();
 		for(int i=0; i<1; i++) {
@@ -1117,9 +1135,9 @@ public class KernelTest {
 	@Test(timeout=10000)
 	public void testAppliquerRegleB() {
 		Graph gtest = new SingleGraph("graphe g1");
-		
 
-		// on crée un graphe g1 de 1000 sommets
+
+		
 		for (int i = 0; i < 100000 ; i++) {
 			gtest.addNode(i + "");
 		}
@@ -1140,13 +1158,51 @@ public class KernelTest {
 		gtest.addEdge("6-8", "6", "8");
 		gtest.addEdge("6-9", "6", "9");
 		gtest.addEdge("7-9", "7", "9");
-		
+
 		Couple c0test=new Couple(gtest,2);
 		Kernel keg0test = new Kernel();
 		for(int i=0; i<100000 ; i++) {
 			keg0test.ajoutRegle(0);
 		}
 		Couple cRes = keg0test.appliquerRegleB(c0test);
+	}
+	
+	/*
+	 * Ce test permet de vérifier la performance de la fonction appliquer String
+	 * Nous allons regarder le temps d'application d'une règle 0. Si nous appliquons cette règle sur un graphe à 30 sommets (avec 20 sommets de degré0), le test met plus de 10 secondes et passe en erreu
+	 * Si nous relançons le test avec un graphe de 15 sommets (avec 6 sommets de degré 0) le test s'effectue en moins de 10 secondes.
+	 * La fonction appliquerString appelle la fonction appliquerRegle (classe kernel) qui affiche le graphe obtenu à chaque itération ce qui ralentit les performances de la fonction
+	 * 
+	 */
+	@Test(timeout=10000)
+	public void testAppliquerRegleString() {
+		Graph gtest = new SingleGraph("graphe g1");
+
+
+		
+		for (int i = 0; i < 30 ; i++) {
+			gtest.addNode(i + "");
+		}
+
+		// et on rajoute des aretes
+
+		gtest.addEdge("1-7", "1", "7");
+		gtest.addEdge("1-9", "1", "9");
+		gtest.addEdge("2-4", "2", "4");
+		gtest.addEdge("2-5", "2", "5");
+		gtest.addEdge("3-5", "3", "5");
+		gtest.addEdge("3-7", "3", "7");
+		gtest.addEdge("4-5", "4", "5");
+		gtest.addEdge("4-6", "4", "6");
+		gtest.addEdge("5-7", "5", "7");		
+		gtest.addEdge("5-6", "5", "6");
+		gtest.addEdge("6-7", "6", "7");
+		gtest.addEdge("6-8", "6", "8");
+		gtest.addEdge("6-9", "6", "9");
+		gtest.addEdge("7-9", "7", "9");
+
+		Couple c0test=new Couple(gtest,2);
+		Couple cRes =Kernel.appliquerString(c0test,"0");
 	}
 }
 
