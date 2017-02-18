@@ -99,16 +99,31 @@ public class RegleTest {
 		assertEquals("doît être égaux", r.getNum(), 1);
 	}
 	
+	/*
+	 * Ce test permet de vérifier le fonctionnement de la fonction getNum lorsque la règle définie est hors normes (règle 3)
+	 * Nous nous attendons à avoir soit la règle définit comme null, soit le numéro de la règle normalisé à la valeur 0
+	 * Le résultat est différent des attentes
+	 */
+	@Test 
+	public void testGetNombreMauvaiseRègle() {
+		assertTrue(r3==null ||r3.getNum()==0);
+	}
+	
 	/* Ce test permet de vérifier que la méthode getNombre() de Regle fonctionne correctement dans les conditions suivantes :
 	 * 
 	 * -> le résultat attendu de la part du programme est le nombre de règle défini dans la classe Règle (soit 3).
 	 * 
 	 * -> le résultat obtenu est conforme aux attentes
 	 */
+	
+	
+	
 	@Test
 	public void testGetNombreRegle() {
 		assertEquals("doît être égaux", Regle.getNombre(), 3);
+		
 	}
+
 
 	
 //TEST CONSTUCTEUR
@@ -137,9 +152,10 @@ public class RegleTest {
 	
 	
 	/* Ce test permet de vérifier que le constructeur de la classe Regle fonctionne correctement dans les conditions suivantes :
-	 * -> l'objet ne doit pas être crée lors que les mauvaise valeurs sont passées en paramètre, c'est-à-dire n est différent de 0, 1, 2.
-	 * 
-	 * -> le résultat obtenu est conforme aux attentes
+	 * -> soit l'objet ne doit pas être crée lors que les mauvaise valeurs sont passées en paramètre, c'est-à-dire n est différent de 0, 1, 2.
+	 * soit l'objet crée la règle 0 c'est à dire qu'il y a une normalisation de la règle et qu'on remplace toute règle différente de (0,1,2) par la règle 0
+	 * -> le résultat est différent des attentes puisque l'objet créé n'est pas null et ne correspond pas à la règle 0
+	 * La règle est donc créée même avec des valeurs différentes de 0, 1 ou 2
 	 */
 	@Test
 	public void testMauvaiseNumRegle() {
@@ -147,9 +163,9 @@ public class RegleTest {
 		Regle r1 = new Regle(-1);
 		Regle r2 = new Regle(100);
 		
-		assertNull("Doît être null", r0);
-		assertNull("Doît être null", r1);
-		assertNull("Doît être null", r2);
+		assertTrue(r0==null || (r0.getNum()==0 && r0!=null));
+		assertTrue(r1==null || (r1.getNum()==0 && r1!=null));
+		assertTrue(r2==null || (r2.getNum()==0 && r2!=null));
 		
 	}
 	
@@ -163,7 +179,7 @@ public class RegleTest {
 	 * -> si k est négatif, il ne faut rien faire
 	 * 
 	 * -> Le résultat est différent.
-	 * En effet, le sommet de degrs 0 est enlevé, bien que le k soit négatif
+	 * En effet, le sommet de degrés 0 est enlevé, bien que le k soit négatif
 	 *
 	 */
 	@Test
@@ -385,5 +401,50 @@ public class RegleTest {
 		
 		assertFalse(cRes.getK() != c1.getK());
 	}
+	
+	// TEST DE PERFORMANCE
+	/* Ces tests donnent une indication mais les résultats ne sont pas toujours identiques. En effet, ils dépendent de la JVM */ 
 
+	
+	/*Ce test permet de regarder la performance de la fonction appliquerRegle
+	 * Nous allons essayer d'appliquer la règle numéro 0 1000 fois sur un graphe à 100 000 sommets
+	 * Nous pouvons appliquer 1000 fois la règle sur un graphe à 40 000 sommets en moins de 10 secondes
+	 * Si nous relançons le test avec un graphe à 50 000 sommets, le test s'effectue en plus de 10 secondes
+	 * Cette fonction a donc des performances satisfaisantes. 
+	 * Elle est plus performante que la fonction appliquerRegle de la classe Kernel car elle n'affiche pas les graphes (qui prennent un temps important) à chaque itération. 
+	 *
+	 */
+	@Test(timeout=10000)
+	public void testAppliquerReglePerf0() {
+		Graph gtest = new SingleGraph("graphe g1");
+
+
+
+		for (int i = 0; i <40000; i++) {
+			gtest.addNode(i + "");
+		}
+
+		// et on rajoute des aretes
+
+		gtest.addEdge("1-7", "1", "7");
+		gtest.addEdge("1-9", "1", "9");
+		gtest.addEdge("2-4", "2", "4");
+		gtest.addEdge("2-5", "2", "5");
+		gtest.addEdge("3-5", "3", "5");
+		gtest.addEdge("3-7", "3", "7");
+		gtest.addEdge("4-5", "4", "5");
+		gtest.addEdge("4-6", "4", "6");
+		gtest.addEdge("5-7", "5", "7");		
+		gtest.addEdge("5-6", "5", "6");
+		gtest.addEdge("6-7", "6", "7");
+		gtest.addEdge("6-8", "6", "8");
+		gtest.addEdge("6-9", "6", "9");
+		gtest.addEdge("7-9", "7", "9");
+
+		Couple c0test=new Couple(gtest,2);
+		for(int i=0; i<1000; i++) {
+			Couple cRes = r0.appliquerRegle(c0test);
+		}
+	}
 }
+

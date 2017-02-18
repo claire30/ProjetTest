@@ -227,6 +227,7 @@ public class testTest {
 	 * Ce test va compter le nombre d'aretes et vérifier que ce nombre est égal au nombre d'aretes total. 
 	 * Ensuite comme chaque arete doit être unique, nous savons que pour une arete d'extrémité x y nous avons deux possibilité l'arete x-y ou l'arete y-x
 	 * Il faut donc vérifier que ces aretes ne soit pas égales pour être sur qu'une seule arete est créée. 
+	 * Si les deux arêtes sont nulles, l'arete n'existe pas, si seulement un des deux est null alors elle existe, si aucune possibilité est nulle, l'arete n'est pas unique, il y a un doublon
 	 * Nous allons tester l'unicité des aretes pour chaque arete possible. Nous sommes surs que deux possibilités d'aretes ne peuvent pas être égales puisque nous avons générer un graphe complet (entre deux sommets, il y a forcémment une arete)
 	 * Le résultat obtenu est conforme aux attentes. 
 	 */
@@ -236,13 +237,13 @@ public class testTest {
 		assertEquals(g19.getEdgeCount(),3);
 		Edge a1=g19.getEdge("0-1");
 		Edge a2=g19.getEdge("1-0"); 
-		assertFalse(a1==a2); 
+		assertTrue((a1==null || a2==null) && a1!=a2); 
 		Edge a3=g19.getEdge("1-2");
 		Edge a4=g19.getEdge("2-1");
-		assertFalse(a3==a4);
+		assertTrue((a3==null || a4==null) && a3!=a4); 
 		Edge a5=g19.getEdge("2-0");
 		Edge a6=g19.getEdge("0-2");
-		assertFalse(a5==a6);
+		assertTrue((a5==null || a6==null) && a5!=a6); 
 
 
 	}
