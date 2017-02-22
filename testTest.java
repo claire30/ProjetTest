@@ -123,8 +123,7 @@ public class testTest {
 
 	/*Ce test permet de vérifier le comportement du programme lorsque le graphe n'est pas conforme aux normes (nombre d'aretes trop grand). 
 	 * Le résultat attendu est un graphe sans sommet ni aretes (juste initialisé avec son nom)
-	 *Le résultat est conforme aux attentes. Il est à noter que retourner un graphe vide n'est pas la seule solution possible
-	 *
+	 *Le résultat est conforme aux attentes
 	 */
 	@Test
 	public void testGraphAretesNon() {
