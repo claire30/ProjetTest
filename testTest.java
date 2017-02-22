@@ -209,7 +209,7 @@ public class testTest {
 	}
 	/*
 	 * Ce test permet de vérifier que le degré d'un sommet est compris dans les normes
-	 * Nous générons un graphe complet d'ordre 5 ayant 5 aretes
+	 * Nous générons un graphe d'ordre 5 ayant 5 aretes
 	 * Notre degré du sommet doit être compris entre 0 et 4
 	 * Le resultat obtenu est conforme aux attentes
 	 */
