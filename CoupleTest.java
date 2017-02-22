@@ -158,13 +158,34 @@ public class CoupleTest {
 	 * -> celà peut poser un problème, car il est totalement illogique et impossible de chercher un vertex cover de taille négative dans un graphe
 	 * 
 	 */
+	
+
+	
 	@Test
 	public void creerCoupleKNegatif() {
 		Graph g = new SingleGraph("A modifier");
 		Couple c = new Couple(g, -4);
 		assertNotEquals(-4, c.getK());
 	}
-
+	
+	/* Ce test permet de vérifier que le constructeur de Couple fonctionne correctement dans les conditions suivantes :
+	 * 
+	 * -> l'entrée pose un problème, c'est à dire un graphe g quelconque, et un k supérieur à l'ordre du graphe en paramètre
+	 * 
+	 * -> le résultat attendu de la part du programme n'est pas le k passé en paramètre, mais un k cohérent avec la situation 
+	 * 
+	 * -> le résultat obtenu est différent des attentes, en effet, le k n'est pas modifié
+	 * 
+	 * -> celà peut poser un problème, car il est totalement illogique de chercher un vertex cover est supérieur à l'ordre du graphe . Il suffit de limiter l'étude à l'ordre du graphe
+	 * 
+	 */
+	@Test
+	public void creerCoupleKGrand() {
+		
+		Couple c = new Couple(g3, 1000);
+		assertEquals(c.getK(),c.getG().getNodeCount() );
+	}
+	
 	
 
 
@@ -180,13 +201,7 @@ public class CoupleTest {
 	 * 
 	 * 
 	 */
-	@Test
-	public void testCoupleKGrand() {
-
-		assertEquals("k égal ordre graphe", c3.getK(), g3.getNodeCount());
-		
-
-	}
+	
 
 
 
@@ -250,7 +265,7 @@ public class CoupleTest {
 	@Test 
 	public void testGetKNégatif() {
 		Couple c= new Couple (g3, -4);
-		assertEquals("doivent être égaux",c.getK(),4 ); 
+		assertEquals("doivent être égaux",c.getK(),1 ); 
 	}
 	/*Test concernant l'utilisation de la méthode getK avec un k supérieur à l'ordre du graphe
 	 * entrée : couple comportant un graphe g3 et un k supérieur à l'ordre de g3
