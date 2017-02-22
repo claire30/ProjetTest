@@ -237,13 +237,13 @@ public class testTest {
 		assertEquals(g19.getEdgeCount(),3);
 		Edge a1=g19.getEdge("0-1");
 		Edge a2=g19.getEdge("1-0"); 
-		assertTrue((a1==null || a2==null) && a1!=a2); 
+		assertTrue (a1!=a2 && ( a1==null || a2==null) ); 
 		Edge a3=g19.getEdge("1-2");
 		Edge a4=g19.getEdge("2-1");
-		assertTrue((a3==null || a4==null) && a3!=a4); 
+		assertTrue (a3!=a4 && ( a3==null || a4==null) ); 
 		Edge a5=g19.getEdge("2-0");
 		Edge a6=g19.getEdge("0-2");
-		assertTrue((a5==null || a6==null) && a5!=a6); 
+		assertTrue (a5!=a6 && ( a5==null || a6==null) ); 
 
 
 	}
