@@ -22,7 +22,7 @@ public class testTest {
 	 * on choisit de générer un graphe avec 10 sommets et 5000 arêtes
 	 * Le résultat attendu est un nombre d'aretes non égal à 5000, le nombre d'aretes doit être égal à 0
 	 * Le résultat obtenu est conforme au résulat attendu. 
-	 * Nous pouvons l'expliquer avec le code de la fonction générant le graphe. En effet, le nombre d'aretes étant trop grand, on ne rentre pas dans la boucle créant les sommets et les aretes donc nous ne créons pas d'aretes*/
+	 **/
 	@Test
 	public void testAretesHorsNormes() {
 
@@ -60,7 +60,7 @@ public class testTest {
 	 * on choisit de générer un graphe avec -10 sommets et 0 arêtes
 	 * Le résultat attendu est un nombre de sommets non égals à -10, le nombre de sommets doit être égal à 0
 	 * Le résultat obtenu est conforme au résulat attendu. 
-	 * Nous pouvons l'expliquer avec le code de la fonction générant le graphe. En effet, avec un nombre de sommets négatif, nous ne rentrons pas dans la boucle for permettant de créer les sommets donc on obtient au final 0 sommets
+	 *
 	 */
 	@Test
 
@@ -70,6 +70,7 @@ public class testTest {
 		assertNotEquals("relations vraie", g3.getNodeCount(),-10);
 		assertEquals("sont égaux", g3.getNodeCount(),0); 
 	} 
+	
 	/*
 	 * Ce test permet de vérifier le nombre de sommet dans lorsque les sommets et les aretes sont dans les normes définis par le programme
 	 * Le résultat attendu doit être le nombre de sommets (10)
