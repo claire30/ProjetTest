@@ -105,12 +105,6 @@ public class CoupleTest {
 	 */
 	
 	
-	
-	@Test
-	public void unNomSignificatif() {
-		// Un morceau de code assertChose(truc);
-		assertTrue(true);
-	}
 
 	//
 	//			Tests Constructeur
