@@ -223,13 +223,9 @@ public class testTest {
 	}
 
 	/*Ce test permet de vérifier l'unicité des aretes sur un graphe complet
-	 * On génère un graphe complet d'ordre 3
-	 * Ce test va compter le nombre d'aretes et vérifier que ce nombre est égal au nombre d'aretes total. 
-	 * Ensuite comme chaque arete doit être unique, nous savons que pour une arete d'extrémité x y nous avons deux possibilité l'arete x-y ou l'arete y-x
-	 * Il faut donc vérifier que ces aretes ne soit pas égales pour être sur qu'une seule arete est créée. 
-	 * Si les deux arêtes sont nulles, l'arete n'existe pas, si seulement un des deux est null alors elle existe, si aucune possibilité est nulle, l'arete n'est pas unique, il y a un doublon
-	 * Nous allons tester l'unicité des aretes pour chaque arete possible. Nous sommes surs que deux possibilités d'aretes ne peuvent pas être égales puisque nous avons générer un graphe complet (entre deux sommets, il y a forcémment une arete)
-	 * Le résultat obtenu est conforme aux attentes. 
+	 * On génère un graphe complet d'ordre 3 et on vérifie que l'arete est unique (les deux possibilités ne sont pas égales et une des deux vaut null)
+	 * Le résultat est conforme aux attentes
+	 * 
 	 */
 	@Test
 	public void testUniciteArete() {
