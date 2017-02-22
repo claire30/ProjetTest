@@ -124,6 +124,7 @@ public class CoupleTest {
 		Graph g = new SingleGraph("graphe de test");
 		Couple c = new Couple(g3, 4);
 		assertTrue(c.getK() == 4);
+		assertNotNull(c);
 	}
 
 	/* Ce test permet de vérifier que le constructeur de Couple fonctionne correctement dans les conditions suivantes :
@@ -267,7 +268,7 @@ public class CoupleTest {
 	 * 
 	 * -> entrée standard
 	 * 
-	 * -> on teste avec un .toString() afin de comparer que les deux graphes soit identiques, biens que le graphe du couple ai été cloné
+	 * -> on teste avec un .toString() afin de comparer que les deux graphes soit identiques, bien que le graphe du couple ait été cloné
 	 * 
 	 * -> le résultat attendu de la part du programme est que les deux graphes soit identiques
 	 * 
