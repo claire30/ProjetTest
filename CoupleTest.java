@@ -247,7 +247,7 @@ public class CoupleTest {
 	 */
 	@Test
 	public void getK2Normal() {
-		assertEquals(c2.getK(), k2);
+		assertEquals(c4.getK(), k1);
 	}
 
 	/*Test concernant l'utilisation de la méthode getK
