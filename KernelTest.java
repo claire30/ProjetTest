@@ -198,20 +198,10 @@ public class KernelTest {
 	/*
 	 * Ce test permet de vérifier que la fonction ajoutRegle de Kernel
 	 * fonctionne correctement
-	 * 
-	 * -> Pour celà, on essaye de mettre deux fois la même règle dans la liste
-	 * d'un Kernel
-	 * 
 	 * -> le résultat attendu de la part du programme est le que le Kernel
-	 * contienne la règle demandée une seule fois, et ignore la seconde demande,
-	 * car il est inutile d'avoir deux fois la même règle dans un même Kernel
-	 * 
-	 * -> le résultat obtenu est différent de celui attendu En effet, si on
-	 * utilise le même objet regle lors de la création, celle-ci est bien unique,
-	 * cependant, en créant une deuième Regle, mais cependant avec le même
-	 * numéro, on obtient une Regle identique à la précedente, mais qui peux
-	 * cependant etre ajoutée à la liste, et on se retrouve donc avec deux fois
-	 * la même règle dans le Kernel. Seules les références des objets sont comparées et comme elles ne sont jamais égales, la règle est ajoutée. Il faudrait redéfinir la méthode equals pour utiliser contain correctement
+	 * contienne la règle demandée une seule fois
+	 * -> le résultat obtenu est différent de celui attendu et on se retrouve donc avec deux fois
+	 * la même règle dans le Kernel. 
 	 */
 	@Test
 	public void testAjoutRegleDouble2() {
