@@ -27,6 +27,7 @@ public class CoupleTest {
 	private int k3;
 	private Couple c4;
 	private Graph g4; 
+	private Couple c5;
 
 	private Graph gGrand; 
 	private Couple grand; 
@@ -79,7 +80,7 @@ public class CoupleTest {
 		c3=new Couple(g3,k3);
 		c4=new Couple (g3,k1);
 		
-		
+		c5=new Couple(g3,k2);
 		
 		
 	}
@@ -121,7 +122,7 @@ public class CoupleTest {
 	@Test
 	public void creerCoupleOkK() {
 		Graph g = new SingleGraph("graphe de test");
-		Couple c = new Couple(g, 4);
+		Couple c = new Couple(g3, 4);
 		assertTrue(c.getK() == 4);
 	}
 
@@ -136,9 +137,9 @@ public class CoupleTest {
 	@Test
 	public void creerCoupleOkGraph() {
 		Graph g = new SingleGraph("A modifier");
-		Couple c = new Couple(g, 4);
-		assertNotSame(c.getG(), g);
-		assertSame(c.getG().toString(), g.toString());
+		Couple c = new Couple(g3, 4);
+		assertNotSame(c.getG(), g3);
+		assertSame(c.getG().toString(), g3.toString());
 	}
 
 	/* Ce test permet de vérifier que le constructeur de Couple fonctionne correctement dans les conditions suivantes :
@@ -233,7 +234,7 @@ public class CoupleTest {
 	 */
 	@Test
 	public void getKNormal() {
-		assertEquals(c1.getK(), k1);
+		assertEquals(c4.getK(), k1);
 	}
 
 
@@ -277,7 +278,7 @@ public class CoupleTest {
 
 	@Test
 	public void getGNormal() {
-		assertEquals(c1.getG().toString() , g1.toString());
+		assertEquals(c4.getG().toString() , g3.toString());
 	}
 
 	/* Ce test permet de vérifier que la méthode getG() de Couple fonctionne correctement dans les conditions suivantes :
@@ -293,7 +294,7 @@ public class CoupleTest {
 	 */
 	@Test
 	public void getG2Normal() {
-		assertSame(c2.getG().toString() , g2.toString());
+		assertSame(c5.getG().toString() , g3.toString());
 	}
 
 	/* Ce test permet de vérifier que le graphe créé (avec des sommets) n'est pas nul
@@ -330,7 +331,7 @@ public class CoupleTest {
 	 */
 	@Test
 	public void afficherGraph1Normal() {
-		c1.afficherGraph();
+		c4.afficherGraph();
 	
 		assertFalse(1 == 2);
 	}
@@ -347,7 +348,7 @@ public class CoupleTest {
 	 */
 	@Test
 	public void afficherGraph2Normal() {
-		c2.afficherGraph();
+		c5.afficherGraph();
 		assertFalse(1 == 2);
 	}
 
