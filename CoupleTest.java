@@ -236,19 +236,6 @@ public class CoupleTest {
 		assertEquals(c1.getK(), k1);
 	}
 
-	/* Ce test permet de vérifier que la méthode getK() de Couple fonctionne correctement dans les conditions suivantes :
-	 * 
-	 * -> entrée standard
-	 * 
-	 * -> le résultat attendu de la part du programme est le k choisis dans la fonction setUp() ( soit 6 )
-	 * 
-	 * -> le résultat obtenu est conforme aux attentes
-	 * 
-	 */
-	@Test
-	public void getK1Normal() {
-		assertEquals(c4.getK(), k1);
-	}
 
 	/*Test concernant l'utilisation de la méthode getK
 	 * ->entrée : un graphe g3 quelconque ainsi qu'un paramètre k négatif
