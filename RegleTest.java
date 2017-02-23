@@ -163,10 +163,10 @@ public class RegleTest {
 		Regle r1 = new Regle(-1);
 		Regle r2 = new Regle(100);
 		
-		assertTrue(r0==null || (r0.getNum()==0 && r0!=null));
-		assertTrue(r1==null || (r1.getNum()==0 && r1!=null));
-		assertTrue(r2==null || (r2.getNum()==0 && r2!=null));
 		
+		assertTrue((r0.getNum()==0 && r0!=null) || (r0==null));
+		assertTrue((r1.getNum()==0 && r1!=null) || (r1==null));
+		assertTrue((r2.getNum()==0 && r2!=null) || (r2==null));
 	}
 	
 	//
@@ -179,22 +179,34 @@ public class RegleTest {
 	 * -> si k est négatif, il ne faut rien faire
 	 * 
 	 * -> Le résultat est différent.
-	 * En effet, le sommet de degrés 0 est enlevé, bien que le k soit négatif
-	 *
+	 * En effet, le nombre de sommet du graphe est différent du nombre de départ
 	 */
 	@Test
-	public void testAppliquerRegle0Negatif() {
+	public void testAppliquerRegle0NegatifSommet() {
 		
 		int nodesInit = c1Negatif.getG().getNodeCount();
 		Couple cRes = r0.appliquerRegle(c1Negatif);
-		
+		assertEquals(cRes.getK(), c1Negatif.getK());
 		assertTrue(cRes.getG().getNodeCount() == nodesInit);
 		
-		assertNotNull(cRes.getG().getNode("0"));
-		assertNotNull(cRes.getG().getNode("6"));
-		
-		assertEquals(cRes.getK(), c1Negatif.getK());
 	}
+	/* Ce test permet de vérifier que la fonction appliquerRegle de Regle fonctionne correctement
+	 * 
+	 * -> si k est négatif, il ne faut rien faire
+	 * 
+	 * -> Le résultat est différent.
+	 * En effet, le sommet 0 est null donc il est supprimé
+	 */
+	
+	@Test
+	public void testAppliquerRegle0NegatifNull() {
+		Couple cRes = r0.appliquerRegle(c1Negatif);
+		assertNotNull(cRes.getG().getNode("6"));
+		assertNotNull(cRes.getG().getNode("0"));
+		
+	}
+	
+	
 	
 	/*
 	 * Ce test permet de vérifier que la fonction appliquerRegle de Regle fonctionne correctement
