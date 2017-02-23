@@ -299,7 +299,7 @@ public class testTest {
 	 *Ce test permet de vérifier la performance de la fonction générer graphe 
 	 *Nous testons avec un graphe à 7 000 000 et 1 arêtes. Le test s'effectue dans le temps demandé
 	 *Mais il ne crée aucun sommet du graphe ce qui n'est pas conforme à ce qu'on peut attendre c'est à dire un graphe à 7 000 000 de sommets
-	 Il faut donc controler les valeurs, d'autant plus que sur l'interface, l'utilisateur peut saisir sa valeur qui sera utilisée dans cette fonction 
+	 
 	 **/
 	@Test(timeout=10000)
 	public void testGenererGraphe2() {
