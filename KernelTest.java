@@ -137,6 +137,7 @@ public class KernelTest {
 
 		assertNotEquals(ke1.liste, ke2.liste);
 		assertEquals(ke1.liste.size(), ke2.liste.size());
+		assertEquals(ke1.liste.size(),1);
 	}
 
 
@@ -507,11 +508,8 @@ public class KernelTest {
 	 * -> le graphe g2 est fait de telle sorte qu'il soit possible de trouver un vertex cover de taille 3,
 	 * cette fonction est donc supposée renvoyer vrai
 	 * 
-	 * -> La fonction renvoie cependant faux. Celà est dû au fait que, après l'application des règles,
-	 * le graphe n'est pas vide, c'est à dire, qu'il reste encore un sommet, de degrès 0, qui devrais etre enlevé par la règle 0
-	 * et donc la condition sur le nombre de sommet = 0 est fausse
+	 * -> La fonction renvoie cependant faux. 
 	 * 
-	 * il faudrait reappliquer la regle 0 a la fin de la simulation pour remplir la condition
 	 */
 	@Test
 	public void testKernelisationOui() {
@@ -899,8 +897,7 @@ public class KernelTest {
 	 * C'est à dire, si on applique la règle 0 sur g2
 	 * 
 	 * -> le résultat est bien celui attendu, c'est à dire que ni le graphe ni le k n'est modifié
-	 * cependant, on rentre dans la boucle, car il faut appuyer sur entré pour continuer,
-	 * ce qui est une perte de performances, car il n'était pas besoin de rentrer dans la boucle
+	 * 
 	 * 
 	 */
 	@Test
