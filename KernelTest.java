@@ -1071,15 +1071,12 @@ public class KernelTest {
 	 * Nous voulons appliquer 1 fois la règle 0 sur un graphe à 30 sommets
 	 * Nous indiquons une durée de 10 secondes et le test passe en erreur car il prend plus de 10 secondes
 	 * Cette fonction n'est pas très performante. 
-	 * Nous pouvons relancer le test avec un graphe à 15 sommets, il y a donc 6 sommets de degré 0, le test passe en dessous de 10 secondes
-	 * La fonction s'exécute en moins de 10 secondes seulement sur de petits graphes 
+	 * 
 	 */
 
 	@Test(timeout=10000)
 	public void testAppliquerRegle() {
 		Graph gtest = new SingleGraph("graphe g1");
-
-
 
 		for (int i = 0; i < 30; i++) {
 			gtest.addNode(i + "");
@@ -1104,27 +1101,18 @@ public class KernelTest {
 
 		Couple c0test=new Couple(gtest,2);
 		Kernel keg0test = new Kernel();
-		for(int i=0; i<1; i++) {
-			keg0test.ajoutRegle(0);
-		}
+		keg0test.ajoutRegle(0);
+
 		Couple cRes = keg0test.appliquerRegle(c0test);
 	}
 
 	/*
 	 * Ce test permet de vérifier la performance de la fonction appliquer règleB avec la règle 0
-	 * Nous voulons appliquer 100 000 fois la règle 0 sur un graphe à 100 000 sommets
-	 * Nous indiquons une durée de 10 secondes et le test passe en erreur car il prend plus de 10 secondes
-	 * 
 	 * Nous pouvons relancer le test avec un graphe à 10 000 sommets et en souhaitant appliquer 10 000 fois la règle 0
-	 * La fonction s'exécute en moins de 10 secondes. AppliquerRegleB est donc beaucoup plus performante niveau temps que la fonction appliquerRegle. 
-	 * AppliquerRegleB n'affiche pas le graphe après chaque règle ce qui fait gagner du temps et la rend plus performante que AppliquerRegle qui affiche le graphe à chaque itération
-	 */
+	 * La fonction s'exécute en moins de 10 secondes. */
 	@Test(timeout=10000)
 	public void testAppliquerRegleB() {
 		Graph gtest = new SingleGraph("graphe g1");
-
-
-
 		for (int i = 0; i < 100000 ; i++) {
 			gtest.addNode(i + "");
 		}
@@ -1191,30 +1179,20 @@ public class KernelTest {
 		Couple c0test=new Couple(gtest,2);
 		Couple cRes =Kernel.appliquerString(c0test,"0");
 	}
-/*
- *Ce test permet de vérifier la performance de la fonction ajout règle
- * Nous allons tester d'ajouter 400 000 règle 0 en moins de 10 seconde. Ce test passe en erreur après 10 secondes
- * Si nous relançons le test en essayant de créer 200 000 règles, le test ne passe pas en erreur en moins de 10 secondes
- * Il est donc possible de créer 200 000 règles rapidemment. 
- * 
- * Ensuite, nous avons relancé le test de la fonction AjoutRegle en mettant en commentaire la ligne Kernel, c'est à dire que nous avons testé la fonction ajoutRegle comme ceci
- * public void ajoutRegle(int r){
-		Regle r1 = new Regle(r);
-		// l'opération contains n'est pas utilisé pour le deuxième test 
-		//if(!this.liste.contains(r1))  */
-/*		this.liste.add(r1);
-	}
-	 Sans le contains, nous pouvons créer 25 000 000 de règle sans problème de temps 
-	 La vérification faite par containte prend énormément de temps car il faut parcourir toutes l'arraylist à chaque itération. De plus comme le contains est mal défini, il est inutile et provoque une perte de temps
- *    
- */
+	/*
+	 *Ce test permet de vérifier la performance de la fonction ajout règle
+	 * Nous allons tester d'ajouter 400 000 règle 0 en moins de 10 seconde. Ce test passe en erreur après 10 secondes
+	 * Si nous relançons le test en essayant de créer 200 000 règles, le test ne passe pas en erreur en moins de 10 secondes
+	 * Il est donc possible de créer 200 000 règles rapidemment. 
+	 * 
+	 */
 	@Test(timeout=10000)
 	public void testPerfAjoutRegle() {
 		Kernel keg0test = new Kernel();
 		for(int i=0; i<400000 ; i++) {
 			keg0test.ajoutRegle(0);
 		}	
-		
+
 	}
 }
 
