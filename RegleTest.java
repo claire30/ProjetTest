@@ -2,7 +2,11 @@ import static org.junit.Assert.*;
 
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.implementations.SingleGraph;
+import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class RegleTest {
@@ -25,6 +29,12 @@ public class RegleTest {
 	private Couple c2;
 	private Couple c1Negatif;
 	private Couple c2Negatif;
+	
+	
+	@BeforeClass 
+	public static void debut() {
+		System.out.println("début des tests");
+	}
 	
 	@Before
 	public void initRegle() {
@@ -424,8 +434,10 @@ public class RegleTest {
 	 * Si nous relançons le test avec un graphe à 50 000 sommets, le test s'effectue en plus de 10 secondes
 	 * Cette fonction a donc des performances satisfaisantes. 
 	 * Elle est plus performante que la fonction appliquerRegle de la classe Kernel car elle n'affiche pas les graphes (qui prennent un temps important) à chaque itération. 
-	 *
+	 * Nous avons mis une annotation @Ignore pour ne pas lancer les tests lorsque nous appuyons sur run car le temps d'exécution de l'ensemble des tests est long
+	 * Si vous voulez lancer ces tests, mettez le @Ignore en commentaire.
 	 */
+	@Ignore
 	@Test(timeout=10000)
 	public void testAppliquerReglePerf0() {
 		Graph gtest = new SingleGraph("graphe g1");
@@ -457,6 +469,16 @@ public class RegleTest {
 		for(int i=0; i<1000; i++) {
 			Couple cRes = r0.appliquerRegle(c0test);
 		}
+	}
+	
+	@After
+	public void testFini() {
+		System.out.println("test fini"); 
+	}
+	
+	@AfterClass
+	public static void testFiniEnsemble() {
+		System.out.println("ensemble de test fini"); 
 	}
 }
 

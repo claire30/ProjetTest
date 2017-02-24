@@ -6,7 +6,10 @@ import org.graphstream.graph.Node;
 import org.graphstream.graph.implementations.Graphs;
 import org.graphstream.graph.implementations.SingleGraph;
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.Timeout;
@@ -41,6 +44,12 @@ public class CoupleTest {
 	 * Comme le précise le @Before, ceci sera exécuté avant les tests
 	 * et permet d'avoir des variables instanciées pour pouvoir s'en servir dans les différents tests 
 	 */
+	
+	
+	@BeforeClass 
+	public static void debut() {
+		System.out.println("début des tests");
+	}
 	
 	@Before
 	public void setUp() throws Exception {
@@ -423,8 +432,11 @@ public class CoupleTest {
 		assertTrue(g3.getEdge("1-2")!=null ||g3.getEdge("2-1")==null);
 	}
 	
-	//TEST DE TEMPS AVEC DES PARAMETRES PLUTOT GRAND 
+	//TEST DE Performance AVEC DES PARAMETRES PLUTOT GRAND 
 	//(les initialisations se font dans les fonctions car sinon le timeout ne fonctionne pas)
+	 /*Nous avons mis une annotation @Ignore pour ne pas lancer les tests lorsque nous appuyons sur run car le temps d'exécution de l'ensemble des tests est long
+	 * Si vous voulez lancer ces tests, mettez le @Ignore en commentaire.
+	 */
 	
 	
 	
@@ -435,7 +447,7 @@ public class CoupleTest {
 	 * Le constructeur met plus de 10 secondes ce qui passe le test en erreur. 
 	 * Si nous refaissons le test avec 900 000 sommets, le constructeur s'exécute en moins de 10 secondes. Les performances de cette méthode sont donc très satisfaisantes
 	 */
-	
+	@Ignore
 	@Test (timeout=10000) 
 	public void testConstructeurGrand() {
 		gGrand=new SingleGraph("graphe test");
@@ -459,6 +471,7 @@ public class CoupleTest {
 	 *Nous fixons une durée de 10 seconds et ave un graphe de 700 000 sommets, l'affichage dure plus de 10 secondes et le test passe en erreur
 	 *Si nous effectuons le test avec 500 000 sommets, l'affichage dure moins de 10 secondes. Les performances sont donc satisfaisantes
 	 */
+	@Ignore
 	@Test(timeout=10000)
 	public void testAffichage() {
 		Graph gGrand2=new SingleGraph("graphe test");
@@ -475,6 +488,16 @@ public class CoupleTest {
 		assertTrue(true);
 	}
 	
+	
+	@After
+	public void testFini() {
+		System.out.println("test fini"); 
+	}
+	
+	@AfterClass
+	public static void testFiniEnsemble() {
+		System.out.println("ensemble de test fini"); 
+	}
 
 
 }

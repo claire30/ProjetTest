@@ -3,7 +3,11 @@ import static org.junit.Assert.*;
 import org.graphstream.graph.Edge;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
+import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 
@@ -11,9 +15,9 @@ public class testTest {
 
 
 
-	@Before 
-	public void setUp() throws Exception {
-
+	@BeforeClass
+	public static void setUp() throws Exception {
+		System.out.println("lancement des tests"); 
 	}
 
 
@@ -91,7 +95,7 @@ public class testTest {
 	 * 
 	 */
 
-
+	
 	@Test (timeout=10000)
 	public void testSommetGrand() {
 		Graph g7=test.generate(10000000, 1);
@@ -292,6 +296,8 @@ public class testTest {
 	//TEST DE PERFORMANCE
 	/*
 	 * Ces tests fournissent une indication mais ne donnent pas toujours le même résultat. En effet, il dépend de la JVM et aussi du nombre d'idérations de la fonction generate qui change à chaque test puisqu'elle est aléatoire
+	 * Nous avons mis une annotation @Ignore pour ne pas lancer les tests lorsque nous appuyons sur run car le temps d'exécution de l'ensemble des tests est long
+	 * Si vous voulez lancer ces tests, mettez le @Ignore en commentaire.
 	 */
 	
 	
@@ -301,6 +307,7 @@ public class testTest {
 	 *Mais il ne crée aucun sommet du graphe ce qui n'est pas conforme à ce qu'on peut attendre c'est à dire un graphe à 7 000 000 de sommets
 	 
 	 **/
+	@Ignore
 	@Test(timeout=10000)
 	public void testGenererGraphe2() {
 		Graph GTEST2=test.generate(7000000,1);
@@ -314,6 +321,7 @@ public class testTest {
 	 * En testant avec 2 000 000 de sommets, le test est en dessous de 10 secondes. 
 	 * Les performances sont donc satisfaisantes
 	 */
+	@Ignore
 	@Test(timeout=10000)
 	public void testGenererGraphe3() {
 		Graph GTEST2=test.generate(3000000,0);
@@ -325,10 +333,15 @@ public class testTest {
 	 * Les performances sont donc satisfaisantes
 	 * 
 	 */
+	@Ignore
 	@Test(timeout=10000)
 	public void testGenererGraphe4() {
 		Graph GTEST4=test.generate(2000000,900000);
 	}
-		
+	
+	@AfterClass
+	public static void testFini() {
+		System.out.println("ensemble de test fini"); 
+	}
 
 }

@@ -2,7 +2,11 @@ import static org.junit.Assert.*;
 
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.implementations.SingleGraph;
+import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class KernelTest {
@@ -29,6 +33,11 @@ public class KernelTest {
 	 * exécuté avant les tests et permet d'avoir des variables instanciées pour
 	 * pouvoir s'en servir dans les différents tests
 	 */
+	
+	@BeforeClass 
+	public static void debut() {
+		System.out.println("début des tests");
+	}
 	@Before
 	public void setUp() throws Exception {
 
@@ -112,6 +121,7 @@ public class KernelTest {
 		assertNotNull(k.liste);
 
 		assertTrue(k.liste.size() == 0);
+		
 	}
 
 	//
@@ -138,6 +148,7 @@ public class KernelTest {
 		assertNotEquals(ke1.liste, ke2.liste);
 		assertEquals(ke1.liste.size(), ke2.liste.size());
 		assertEquals(ke1.liste.size(),1);
+		
 	}
 
 
@@ -1064,7 +1075,10 @@ public class KernelTest {
 	/*
 	 * Test de performance
 	 * Ces tests donnent une indication de temps mais dépendent de la JVM 
+	 *  Nous avons mis une annotation @Ignore pour ne pas lancer les tests lorsque nous appuyons sur run car le temps d'exécution de l'ensemble des tests est long
+	 * Si vous voulez lancer ces tests, mettez le @Ignore en commentaire.
 	 */
+	 
 
 	/*
 	 * Ce test permet de vérifier la performance de la fonction appliquer règle avec la règle 0
@@ -1072,8 +1086,9 @@ public class KernelTest {
 	 * Nous indiquons une durée de 10 secondes et le test passe en erreur car il prend plus de 10 secondes
 	 * Cette fonction n'est pas très performante. 
 	 * 
+	 * 
 	 */
-
+	@Ignore
 	@Test(timeout=10000)
 	public void testAppliquerRegle() {
 		Graph gtest = new SingleGraph("graphe g1");
@@ -1110,6 +1125,7 @@ public class KernelTest {
 	 * Ce test permet de vérifier la performance de la fonction appliquer règleB avec la règle 0
 	 * Nous pouvons relancer le test avec un graphe à 10 000 sommets et en souhaitant appliquer 10 000 fois la règle 0
 	 * La fonction s'exécute en moins de 10 secondes. */
+	@Ignore
 	@Test(timeout=10000)
 	public void testAppliquerRegleB() {
 		Graph gtest = new SingleGraph("graphe g1");
@@ -1149,6 +1165,7 @@ public class KernelTest {
 	 * La fonction appliquerString appelle la fonction appliquerRegle (classe kernel) qui affiche le graphe obtenu à chaque itération ce qui ralentit les performances de la fonction
 	 * 
 	 */
+	@Ignore
 	@Test(timeout=10000)
 	public void testAppliquerRegleString() {
 		Graph gtest = new SingleGraph("graphe g1");
@@ -1186,6 +1203,7 @@ public class KernelTest {
 	 * Il est donc possible de créer 200 000 règles rapidemment. 
 	 * 
 	 */
+	@Ignore
 	@Test(timeout=10000)
 	public void testPerfAjoutRegle() {
 		Kernel keg0test = new Kernel();
@@ -1193,6 +1211,15 @@ public class KernelTest {
 			keg0test.ajoutRegle(0);
 		}	
 
+	}
+	@After
+	public void testFini() {
+		System.out.println("test fini"); 
+	}
+	
+	@AfterClass
+	public static void testFiniEnsemble() {
+		System.out.println("ensemble de test fini"); 
 	}
 }
 
