@@ -130,12 +130,22 @@ public class CoupleTest {
 	 */
 	@Test
 	public void creerCoupleOkK() {
-		Graph g = new SingleGraph("graphe de test");
 		Couple c = new Couple(g3, 4);
 		assertTrue(c.getK() == 4);
 		assertNotNull(c);
 	}
 
+	/*
+	 * Ce test permet de vérifier que si nous créons deux couples avec les mêmes paramètres, alors deux objets différents sont créés.
+	 * Le test est conforme aux attentes. 
+	 */
+	@Test
+	public void testMemeCouple() {
+		Couple c = new Couple(g3, 4);
+		Couple c2 = new Couple(g3, 4);
+		assertNotSame(c,c2);
+		
+	}
 	/* Ce test permet de vérifier que le constructeur de Couple fonctionne correctement dans les conditions suivantes :
 	 * 
 	 * -> l'entrée est conforme aux attentes, c'est à dire un graphe g quelconque, et un k strictement positif

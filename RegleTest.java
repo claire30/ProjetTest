@@ -155,6 +155,9 @@ public class RegleTest {
 		assertNotNull("Ne doît pas être null", r1);
 		assertNotNull("Ne doît pas être null", r2);
 		
+		assertNotSame(r0, r1); 
+		assertNotSame(r0,r2); 
+		assertNotSame(r1,r2);
 		assertEquals("doît être égaux", r0.getNum(), 0);
 		assertEquals("doît être égaux", r1.getNum(), 1);
 		assertEquals("doît être égaux", r2.getNum(), 2);

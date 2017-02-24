@@ -145,7 +145,7 @@ public class KernelTest {
 		ke1.ajoutRegle(0);
 		ke2.ajoutRegle(1);
 
-		assertNotEquals(ke1.liste, ke2.liste);
+		assertNotSame(ke1.liste, ke2.liste);
 		assertEquals(ke1.liste.size(), ke2.liste.size());
 		assertEquals(ke1.liste.size(),1);
 		
@@ -231,10 +231,22 @@ public class KernelTest {
 		assertNotEquals(ke1.liste.size(), 2);
 
 		Regle r2 = new Regle(0);
-
+		 
 		ke1.ajoutRegle(r2);
 		assertNotEquals(ke1.liste.size(), 2);
 
+	}
+	/*
+	 * Ce test permet de vérifier que deux règles ayant les mêmes numéros font référence à deux objects différents
+	 * Le test s'effectue normalement, il y a donc deux objets différents créés. 
+	 */
+	@Test 
+	public void testReference() {
+		Regle r1 = new Regle(0);
+		Regle r2 = new Regle(0);
+		assertNotSame(r1,r2); 
+		 
+		
 	}
 
 	/*
