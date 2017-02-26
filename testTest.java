@@ -45,7 +45,7 @@ public class testTest {
 	@Test (timeout=10000)
 	public void testSommetsOkAretesNon() {
 		Graph g4=test.generate(10,-5); 
-		assertEquals("sont égaux", g4.getEdgeCount(), -5);
+		assertNotEquals("sont égaux", g4.getEdgeCount(), -5);
 
 	}
 
