@@ -100,7 +100,7 @@ public class RegleTest {
 	 * 
 	 * -> entrée standard
 	 * 
-	 * -> le résultat attendu de la part du programme est le n choisis dans la fonction setUp() ( soit 1 )
+	 * -> le résultat attendu de la part du programme est le n choisit dans la fonction setUp() ( soit 1 )
 	 * 
 	 * -> le résultat obtenu est conforme aux attentes
 	 */
@@ -139,7 +139,7 @@ public class RegleTest {
 //TEST CONSTUCTEUR
 	
 	/* Ce test permet de vérifier que le constructeur de la classe Regle fonctionne correctement dans les conditions suivantes :
-	 * -> l'objet est bien crée
+	 * -> l'objet est bien créé
 	 * 
 	 * -> le résultat attendu de la part du programme est le n passé en paramètre obtenu par la méthode getNum()
 	 * 
@@ -165,7 +165,7 @@ public class RegleTest {
 	
 	
 	/* Ce test permet de vérifier que le constructeur de la classe Regle fonctionne correctement dans les conditions suivantes :
-	 * -> soit l'objet ne doit pas être crée lors que les mauvaise valeurs sont passées en paramètre, c'est-à-dire n est différent de 0, 1, 2.
+	 * -> soit l'objet ne doit pas être créé lorsque les mauvaise valeurs sont passées en paramètre, c'est-à-dire n est différent de 0, 1, 2.
 	 * soit l'objet crée la règle 0 c'est à dire qu'il y a une normalisation de la règle et qu'on remplace toute règle différente de (0,1,2) par la règle 0
 	 * -> le résultat est différent des attentes puisque l'objet créé n'est pas null et ne correspond pas à la règle 0
 	 * La règle est donc créée même avec des valeurs différentes de 0, 1 ou 2
@@ -268,7 +268,7 @@ public class RegleTest {
 	/*
 	 * Ce test permet de vérifier que la fonction appliquerRegle de Regle fonctionne correctement
 	 * 
-	 * -> on vérifie si la règle 0 enlève bien le sommet 0 du graphe g1, qui est de degrès 0, sans modifier le k
+	 * -> on vérifie si la règle 0 enlève bien le sommet 0 du graphe g1, qui est de degré 0, sans modifier le k
 	 * 
 	 * -> Le résultat est bien celui attendu, c'est à dire que le sommet 0 est supprimé du graphe, et le k n'est pas modifié
 	 * 
@@ -292,7 +292,7 @@ public class RegleTest {
 	/*
 	 * Ce test permet de vérifier que la fonction appliquerRegle de Regle fonctionne correctement
 	 * 
-	 * -> on vérifie si la règle 1 enlève bien le sommet 6 du graphe g1, car il est le seul voisin du sommet 8, de degrès 1
+	 * -> on vérifie si la règle 1 enlève bien le sommet 6 du graphe g1, car il est le seul voisin du sommet 8, de degré 1
 	 * 
 	 * -> Le résultat est bien celui attendu, c'est à dire que le sommet 6 est supprimé du graphe, et le k est décrémenté
 	 * 
@@ -316,7 +316,7 @@ public class RegleTest {
 	/*
 	 * Ce test permet de vérifier que la fonction appliquerRegle de Regle fonctionne correctement
 	 * 
-	 * -> on vérifie si la règle 2 enlève bien le sommet 0 du graphe g2, car il est de degrès 4, ce qui est supérieur à k=3, tout en décrémentant k
+	 * -> on vérifie si la règle 2 enlève bien le sommet 0 du graphe g2, car il est de degré 4, ce qui est supérieur à k=3, tout en décrémentant k
 	 * 
 	 * -> Le résultat est bien celui attendu, c'est à dire que le sommet 0 est supprimé du graphe, et le k est décrémenté
 	 * 
@@ -411,7 +411,7 @@ public class RegleTest {
 	/*
 	 * Ce test permet de vérifier que la fonction appliquerRegle de Regle fonctionne, même si la règle a un numéro "incorrect"
 	 * 
-	 * Pour celà, on crée une règle qui n'est pas censé exister ( par exemple, la règle numéro 3 )
+	 * Pour celà, on crée une règle qui n'est pas censée exister ( par exemple, la règle numéro 3 )
 	 * 
 	 * -> on vérifie si le graphe est modifié par une règle qui n'existe pas
 	 * C'est à dire, si on applique la règle 3 sur g1
@@ -437,6 +437,7 @@ public class RegleTest {
 	 * Si nous relançons le test avec un graphe à 50 000 sommets, le test s'effectue en plus de 10 secondes
 	 * Cette fonction a donc des performances satisfaisantes. 
 	 * Elle est plus performante que la fonction appliquerRegle de la classe Kernel car elle n'affiche pas les graphes (qui prennent un temps important) à chaque itération. 
+	 * 
 	 * Nous avons mis une annotation @Ignore pour ne pas lancer les tests lorsque nous appuyons sur run car le temps d'exécution de l'ensemble des tests est long
 	 * Si vous voulez lancer ces tests, mettez le @Ignore en commentaire.
 	 */

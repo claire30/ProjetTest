@@ -95,27 +95,6 @@ public class CoupleTest {
 	}
 	
 
-
-	/* Ceci est le close, c'est ici que l'on va fermer les variables de la classe test qui ont besoin de l'etre.
-	 * Comme le précise le @After, ceci sera exécuté après la fin de tous les tests
-	 * et permet d'éviter les fuites de mémoire où autre soucis.
-	 * Dans ce projet, nous n'avons pas de problème de ce type
-	 */	
-	
-
-	/* Ce test permet de vérifier que la méthode <<insérer un nom ici>> fonctionne correctement dans les conditions suivantes :
-	 * 
-	 * -> l'entrée << est conforme aux attentes  // pose un problème ( décrire le problème ie: nb arrêtes < 0 ) >>
-	 * 
-	 * -> le résultat attendu de la part du programme est << une truc normal / lever une exception / règler l'erreur sans en informer ... >>
-	 * 
-	 * -> le résultat obtenu est << conforme aux attentes / différent des attentes ( décrire les différences ) >>
-	 * 
-	 * -> si résultat différent : qu'est ce qui cause ce problème ?
-	 */
-	
-	
-
 	//
 	//			Tests Constructeur
 	//
@@ -201,22 +180,6 @@ public class CoupleTest {
 		assertEquals(c.getK(),c.getG().getNodeCount() );
 	}
 	
-	
-
-
-	/*ce test permet de vérifier que le fonctionnement du Constructeur de Couple
-	 * 
-	 * ->paramètres d'entrée : un graphe quelconque g3, et un k supérieur à l'ordre du graphe g3
-	 * 
-	 * ->Le résultat attendu n'est pas le k passé en paramètre, mais un k conhérent avec l'objectif c'est à dire un k normalisé
-	 * 
-	 * -> Le résultat obtenu ne correspond pas aux attentes puisque le k n'est pas modifié
-	 * 
-	 * ->Ce résultat est incohérent car nous pouvons recouvrir toutes les arêtes en prenant un k égal à l'ordre du graphe 
-	 * 
-	 * 
-	 */
-	
 
 
 
@@ -230,7 +193,6 @@ public class CoupleTest {
 	 * 
 	 * -> le résultat obtenu est différent des attentes, en effet, une erreur de type NullPointerException est levée, mais n'est pas gérée par la classe.
 	 * 
-	 * -> Ce problème est dû à la fonction Graphs.clone() qui renvoie cette erreur si le graphe passé en argument est null.
 	 * 
 	 */
 	@Test
@@ -247,7 +209,7 @@ public class CoupleTest {
 	 * 
 	 * -> entrée standard
 	 * 
-	 * -> le résultat attendu de la part du programme est le k choisis dans la fonction setUp() ( soit 4 )
+	 * -> le résultat attendu de la part du programme est le k choisit dans la fonction setUp() ( soit 4 )
 	 * 
 	 * -> le résultat obtenu est conforme aux attentes
 	 * 
@@ -271,7 +233,7 @@ public class CoupleTest {
 	}
 	/*Test concernant l'utilisation de la méthode getK avec un k supérieur à l'ordre du graphe
 	 * entrée : couple comportant un graphe g3 et un k supérieur à l'ordre de g3
-	 * Le résultat atendu est une normalisation de k c'est à dire que k doit être égal à l'ordre d graphe
+	 * Le résultat atendu est une normalisation de k c'est à dire que k doit être égal à l'ordre du graphe
 	 * Le résultat obtenu n'est pas conforme aux attentes puisque le k n'est pas modifié, il n'y pas eu de normalisation
 	 */
 	@Test
@@ -287,7 +249,7 @@ public class CoupleTest {
 	 * 
 	 * -> entrée standard
 	 * 
-	 * -> on teste avec un .toString() afin de comparer que les deux graphes soit identiques, bien que le graphe du couple ait été cloné
+	 * -> on teste avec un .toString() afin de comparer les deux graphes (ils doivent être identiques), bien que le graphe du couple ait été cloné
 	 * 
 	 * -> le résultat attendu de la part du programme est que les deux graphes soit identiques
 	 * 
@@ -344,7 +306,7 @@ public class CoupleTest {
 	 * -> entrée standard
 	 * 
 	 * -> on teste uniquement d'appeller la méthode et on confirme le test si la fonction ne renvoie pas d'erreur
-	 * car cette fonction ne renvoie rien et ne modifie aucun attribut, aussi bien sur l'objet Couple que sur lobjet Graph du couple
+	 * car cette fonction ne renvoie rien et ne modifie aucun attribut, aussi bien sur l'objet Couple que sur l'objet Graph du couple
 	 * 
 	 * -> le résultat obtenu est conforme aux attentes
 	 * 
@@ -404,8 +366,8 @@ public class CoupleTest {
 		assertEquals("aretes égales", c1.getG().getEdgeCount(),0);
 	}
 
-	/* ce test permet de vérifir le nombre d'aretes d'un graphe non vide
-	 * le résultat attendu est que le nombre d'aretes du graphe soit conforme aux arretes que nous avons créé (3)
+	/* ce test permet de vérifier le nombre d'aretes d'un graphe non vide
+	 * le résultat attendu est que le nombre d'aretes du graphe soit conforme aux aretes que nous avons créé (3)
 	 * Le résultat obtenu est conforme au résultat attendu. 
 	 */
 	@Test
@@ -425,7 +387,7 @@ public class CoupleTest {
 	}
 	/*
 	 * Ce test permet de vérifier qu'une arete n'existe pas
-	 * Pour créer une arete nous avons deux possiblités x-y et y-x, nous vérifions que les deux possiblités retourne null
+	 * Pour créer une arete nous avons deux possiblités x-y et y-x, nous vérifions que les deux possibilités retourne null
 	 * Le test est conforme aux attentes
 	 */
 	@Test
@@ -442,7 +404,7 @@ public class CoupleTest {
 		assertTrue(g3.getEdge("1-2")!=null ||g3.getEdge("2-1")==null);
 	}
 	
-	//TEST DE Performance AVEC DES PARAMETRES PLUTOT GRAND 
+	//TEST DE Performance 
 	//(les initialisations se font dans les fonctions car sinon le timeout ne fonctionne pas)
 	 /*Nous avons mis une annotation @Ignore pour ne pas lancer les tests lorsque nous appuyons sur run car le temps d'exécution de l'ensemble des tests est long
 	 * Si vous voulez lancer ces tests, mettez le @Ignore en commentaire.
@@ -478,7 +440,7 @@ public class CoupleTest {
 		
 	/*
 	 * Ce test permet de vérifier les performances concernant l'affichage d'un graphe d'un couple
-	 *Nous fixons une durée de 10 seconds et ave un graphe de 700 000 sommets, l'affichage dure plus de 10 secondes et le test passe en erreur
+	 *Nous fixons une durée de 10 secondes et ave un graphe de 700 000 sommets, l'affichage dure plus de 10 secondes et le test passe en erreur
 	 *Si nous effectuons le test avec 500 000 sommets, l'affichage dure moins de 10 secondes. Les performances sont donc satisfaisantes
 	 */
 	@Ignore

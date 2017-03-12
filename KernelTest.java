@@ -109,7 +109,7 @@ public class KernelTest {
 	 * correctement
 	 * 
 	 * -> le résultat attendu de la part du programme est le que le Kernel ne
-	 * soit pas null, et que sa liste de lrègles non plus
+	 * soit pas null, et que sa liste de règles non plus
 	 * 
 	 * -> le résultat obtenu est conforme aux attentes
 	 */
@@ -165,7 +165,6 @@ public class KernelTest {
 	 * 
 	 * -> le résultat obtenu est différent de celui attendu En effet, la règle
 	 * est ajoutée une deuxième fois
-	 * Seul les références des objets sont comparées et elles ne sont donc jamais égales, il faut donc redéfinir la méthode equals pour comparer deux objets avec contain
 	 */
 
 	@Test
@@ -423,8 +422,8 @@ public class KernelTest {
 	 * C'est à dire, si on applique la règle 0 sur g2
 	 * 
 	 * -> le résultat est bien celui attendu, c'est à dire que ni le graphe ni le k n'est modifié
-	 * cependant, on rentre dans la boucle, car il faut appuyer sur entrée dans la console pour continuer,
-	 * ce qui est une perte de performances, car il n'était pas besoin de rentrer dans la boucle
+	 * cependant, on rentre dans la boucle, car il faut appuyer sur la touche entrée dans la console pour continuer,
+	 * ce qui est une perte de performances, car ce n'était pas nécessaire de rentrer dans la boucle
 	 * 
 	 */
 	@Test
@@ -463,8 +462,8 @@ public class KernelTest {
 	 * C'est à dire, si on applique la règle 2 sur g2 avec un k=10
 	 * 
 	 * -> le résultat est bien celui attendu, c'est à dire que ni le graphe ni le k n'est modifié
-	 * Il n'est même pas necessaire d'apuyer sur entrée, ce qui montre que l'on n'est pas rentré dans la boucle
-	 * ce qui est un gain de temps et de performances
+	 * Il n'est même pas necessaire d'apuyer sur la touche entrée, ce qui montre que l'on n'est pas rentré dans la boucle
+	 * ce qui est un gain de temps et de performance
 	 */
 	@Test
 	public void testAppliquerRegle2Inutile() {
@@ -562,7 +561,7 @@ public class KernelTest {
 	 * fonctionne correctement
 	 * 
 	 * -> on passe un argument null a la fonction pour voir sa réaction
-	 * On s'attend a ce que l'argument null soit géré, et qu'il n'y ai pas de nullPointerException
+	 * On s'attend a ce que l'argument null soit géré, et qu'il n'y ait pas de nullPointerException
 	 * 
 	 * -> La méthode lève un NullPointerException
 	 */
@@ -663,7 +662,7 @@ public class KernelTest {
 	/*
 	 * Ce test permet de vérifier le comportement de la fonction appliquerRègle avec un k négatif et la règle 1
 	 * Le sommet pouvant être suppprimé est le sommet 6 car il est le seul voisin du sommet 8 de degré 1
-	 * Nous nous attendons à aucun changement (même k, même nombre de sommet donc pas de suppression)
+	 * Nous nous attendons à aucun changement (même k, même nombre de sommets donc pas de suppression)
 	 * Le résultat est conforme aux attentes. Nous pouvons expliquer ceci grâce à la fonction appliquer règle de Regle qui vérifie la condition k>0 avant de supprimer un sommet et de diminuer le k 
 	 */
 	@Test 
@@ -696,7 +695,7 @@ public class KernelTest {
 	/*
 	 * Ce test permet de vérifier le comportement de la fonction appliquerRègle avec un k négatif et la règle 2
 	 * Tous les sommets peuvent être supprimés car ils sont de tous de degré supérieur à k+1=0
-	 * Nous nous attendons à aucun changement (même k, même nombre de sommet donc pas de suppression)
+	 * Nous nous attendons à aucun changement (même k, même nombre de sommets donc pas de suppression)
 	 * Le résultat est conforme aux attentes. Nous pouvons expliquer ceci grâce à la fonction appliquer règle de Regle qui vérifie la condition k>0 avant de supprimer un sommet et de diminuer le k 
 	 */
 
@@ -735,7 +734,7 @@ public class KernelTest {
 	 * C'est à dire, si on applique la règle 0 sur g2
 	 * 
 	 * -> le résultat est bien celui attendu, c'est à dire que ni le graphe ni le k n'est modifié
-	 * cependant, on rentre dans la boucle, car il faut appuyer sur entrée pour continuer,
+	 * cependant, on rentre dans la boucle, car il faut appuyer sur la touche entrée pour continuer,
 	 * ce qui est une perte de performances, car il n'y avait pas besoin de rentrer dans la boucle
 	 * 
 	 */
@@ -755,7 +754,7 @@ public class KernelTest {
 	 * C'est à dire, si on applique la règle 1 sur g2
 	 * 
 	 * -> le résultat est bien celui attendu, c'est à dire que ni le graphe ni le k n'est modifié
-	 * cependant, on rentre dans la boucle, car il faut appuyer sur entrée pour continuer,
+	 * cependant, on rentre dans la boucle, car il faut appuyer sur la touche entrée pour continuer,
 	 * ce qui est une perte de performance, car il n'y avait pas besoin de rentrer dans la boucle
 	 * 
 	 */
@@ -775,7 +774,7 @@ public class KernelTest {
 	 * C'est à dire, si on applique la règle 2 sur g2 avec un k=10
 	 * 
 	 * -> le résultat est bien celui attendu, c'est à dire que ni le graphe ni le k n'est modifié
-	 * Il n'est même pas necessaire d'appuyer sur entrée, ce qui montre que l'on n'est pas rentré dans la boucle
+	 * Il n'est même pas necessaire d'appuyer sur la touche entrée, ce qui montre que l'on n'est pas rentré dans la boucle
 	 * ce qui est un gain de temps et de performance.
 	 */
 	@Test
@@ -839,7 +838,7 @@ public class KernelTest {
 	/*
 	 * Ce test permet de vérifier que la fonction appliquerString de Kernel fonctionne correctement
 	 * 
-	 * -> on vérifie si la règle 0 enlève bien le sommet 0 du graphe g1, qui est de degrès 0, sans modifier le k
+	 * -> on vérifie si la règle 0 enlève bien le sommet 0 du graphe g1, qui est de degré 0, sans modifier le k
 	 * 
 	 * -> Le résultat est bien celui attendu, c'est à dire que le sommet 0 est supprimé du graphe, et le k n'est pas modifié
 	 *
@@ -880,7 +879,7 @@ public class KernelTest {
 	/*
 	 * Ce test permet de vérifier que la fonction appliquerString de Kernel fonctionne correctement
 	 * 
-	 * -> on vérifie si la règle 2 enlève bien le sommet 0 du graphe g2, car il est de degrès 4, ce qui est supérieur à k=3, tout en décrémentant k
+	 * -> on vérifie si la règle 2 enlève bien le sommet 0 du graphe g2, car il est de degré 4, ce qui est supérieur à k=3, tout en décrémentant k
 	 * 
 	 * -> Le résultat est bien celui attendu, c'est à dire que le sommet 0 est supprimé du graphe, et le k est décrémenté
 	 * 
@@ -939,8 +938,8 @@ public class KernelTest {
 	 * C'est à dire, si on applique la règle 1 sur g2
 	 * 
 	 * -> le résultat est bien celui attendu, c'est à dire que ni le graphe ni le k n'est modifié
-	 * cependant, on rentre dans la boucle, car il faut appuyer sur entré pour continuer,
-	 * ce qui est une perte de performances, car il n'était pas besoin de rentrer dans la boucle
+	 * cependant, on rentre dans la boucle, car il faut appuyer sur la touche entrée pour continuer,
+	 * ce qui est une perte de performances, car il n'y avait pas besoin de rentrer dans la boucle
 	 * 
 	 */
 	@Test
@@ -959,7 +958,7 @@ public class KernelTest {
 	 * C'est à dire, si on applique la règle 2 sur g2 avec un k=10
 	 * 
 	 * -> le résultat est bien celui attendu, c'est à dire que ni le graphe ni le k n'est modifié
-	 * Il n'est même pas necessaire d'appuyer sur entrée, ce qui montre que l'on n'est pas rentré dans la boucle
+	 * Il n'est même pas necessaire d'appuyer sur la touche entrée, ce qui montre que l'on n'est pas rentré dans la boucle
 	 * ce qui est un gain de temps et de performances
 	 */
 	@Test
@@ -975,7 +974,7 @@ public class KernelTest {
 	/*
 	 * Ce test permet de vérifier que la fonction appliquerString de Kernel fonctionne, même si le Kernel est "incorrect"
 	 * 
-	 * Pour celà, on crée un Kernel avec une règle qui n'est aps censé exister ( par exemple, la règle 3 )
+	 * Pour celà, on crée un Kernel avec une règle qui n'est pas censée exister ( par exemple, la règle 3 )
 	 * 
 	 * -> on vérifie si le graphe est modifié par une règle qui n'existe pas
 	 * C'est à dire, si on applique la règle 5 sur g1
@@ -1018,7 +1017,7 @@ public class KernelTest {
 	 * 
 	 * -> on vérifie si le graphe est modifié par une règle qui n'existe pas
 	 * C'est à dire, si on applique les règles 3/4 et 5 sur g1
-	 * Tout en étant réelement modifié par la règle 0
+	 * Tout en étant réellement modifié par la règle 0
 	 * 
 	 */
 	@Test
@@ -1054,8 +1053,8 @@ public class KernelTest {
 	 * 
 	 * Pour celà, on crée un string qui ne contient pas des nombres, mais des lettres
 	 * 
-	 * -> on vérifie si une exception est crée, ou si le programme gère l'erreur, et ne fait rien
-	 * Le résultat est conforme aux attentes, toto n'est pas traité car la méthode getNumeric value appliqué sur la chaine de caractère toto renvoie un nombre négatif donc toto est ignoré
+	 * -> on vérifie si une exception est créée, ou si le programme gère l'erreur, et ne fait rien
+	 * Le résultat est conforme aux attentes, toto n'est pas traité 
 	 * 
 	 */
 	@Test

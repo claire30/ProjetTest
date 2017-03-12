@@ -35,12 +35,12 @@ public class testTest {
 		assertEquals("sont égaux", g1.getEdgeCount(),0); 
 	}
 
-	/*Ce test permet de vérifier le comportement du programme avec des arêtes négatif
+	/*Ce test permet de vérifier le comportement du programme avec des arêtes négatives
 	 * on choisir de générer un graphe à 10 sommets et -5 arêtes
 	 * Nous fixons une durée de temps de 10 secondes
-	 * Le résultat attendu est un nombre d'aretes normalisé c'est à dire compris entre 0 et le nombre d'arretes maximal soit (n(n-1))/2 où n représente l'ordre du graphe
+	 * Le résultat attendu est un nombre d'aretes normalisé c'est à dire compris entre 0 et le nombre d'aretes maximal soit (n(n-1))/2 où n représente l'ordre du graphe
 	 * Le résultat obtenu n'est pas conforme aux attentes puisque le test ne termine jamais (même en allongeant la durée du temps passé en paramètre)
-	 * Nous pouvons expliquer cette boucle infinie lors de la création des aretes. En effet, nous allons rentrer dans la boucle permettant de créer des aretes. Cependant le compteur étant initialisé à 0, la boucle while (cpt !=edge) ne s'arrete jamais lorsque le nombre d'aretes est négatif. En effet le compteur va cesser d'augmenter au cours du programme
+	 * Nous pouvons expliquer cette boucle infinie lors de la création des aretes. En effet, nous allons rentrer dans la boucle permettant de créer des aretes. Cependant le compteur étant initialisé à 0, la boucle while (cpt !=edge) ne s'arrete jamais lorsque le nombre d'aretes est négatif. En effet le compteur ne va pas cesser d'augmenter au cours du programme
 	 */
 	@Test (timeout=10000)
 	public void testSommetsOkAretesNon() {
@@ -48,7 +48,9 @@ public class testTest {
 		assertNotEquals("sont égaux", g4.getEdgeCount(), -5);
 
 	}
-
+	/*
+	 * Ce test permet de vérifier que le nombre d'arêtes créé est bien égal au nombre demandé
+	 */
 	@Test
 	public void testAretesNormes() {
 		Graph g5=test.generate(10,5); 
@@ -76,8 +78,8 @@ public class testTest {
 	} 
 	
 	/*
-	 * Ce test permet de vérifier le nombre de sommet dans lorsque les sommets et les aretes sont dans les normes définis par le programme
-	 * Le résultat attendu doit être le nombre de sommets (10)
+	 * Ce test permet de vérifier le nombre de sommet obtenu lorsque les sommets et les aretes sont dans les normes définis par le programme
+	 * Le résultat attendu doit être le nombre de sommets demandé (10)
 	 * Le résultat obtenu est conforme au résultat attendu
 	 */
 	@Test
@@ -176,7 +178,7 @@ public class testTest {
 	 * Le résultat attendu est un degré 4 pour tous les sommets
 	 * Le résultat obtenu est conforme au résultat attendu 
 	 * Ainsi le mécanisme qui vérifie l'existance d'une arete avant de l'ajouter est donc correct. 
-	 * Si ce mécanisme n'était pas correct, nous aurions pu avoir des degrés supérieur à 4 pour certains sommmets
+	 * Si ce mécanisme n'était pas correct, nous aurions pu avoir des degrés supérieur à 4 pour certains sommmets et des degrés inférieur pour d'autre
 	 * 
 	 */
 	@Test
@@ -214,7 +216,7 @@ public class testTest {
 	/*
 	 * Ce test permet de vérifier que le degré d'un sommet est compris dans les normes
 	 * Nous générons un graphe d'ordre 5 ayant 5 aretes
-	 * Notre degré du sommet doit être compris entre 0 et 4
+	 * Le degré du sommet doit être compris entre 0 et 4
 	 * Le resultat obtenu est conforme aux attentes
 	 */
 	@Test
@@ -251,7 +253,7 @@ public class testTest {
 	/*
 	 * Ce test permet de vérifier qu'une adresse a un "ordre"
 	 * Pour cela, on va utiliser un graphe a 2 sommets ayant une arete donc le nombre d'aretes maximal sur ce graphe est de 1 aretes
-	 * L'arete peut donc soit être "0-1" soit "1-0". Pour montrer que l'arete a un "ordre", il faut donc verifier que a1(0-1) n'est pas égal à a2(1-0) et qu'une des deux aretes possible est nulle (c'est à dire pas créé) 
+	 * L'arete peut donc soit être "0-1" soit "1-0". Pour montrer que l'arete a un "ordre", il faut donc verifier que a1(0-1) n'est pas égal à a2(1-0) et qu'une des deux aretes possible est nulle (c'est à dire pas créée) 
 	 * Le résultat est conforme aux attentes
 	 * 
 	 */
@@ -267,7 +269,7 @@ public class testTest {
 
 	/*
 	 * Ce test permet de vérifier qu'une arête qui n'existe pas vaut null
-	 * Nous utilisons un graphe d'ordre 2 ayant 0 aretes et regardons l'existence d'une relation 0-1
+	 * Nous utilisons un graphe d'ordre 2 ayant 0 arete et regardons l'existence d'une relation 0-1
 	 * Le résultat est conforme aux attente et 0-1 vaut mieux Null
 	 */
 	@Test 
@@ -282,7 +284,7 @@ public class testTest {
 	 * Ce test permet de vérifier la condition d'ajout d'une arete dans le graphe s'il n'existe (graph.getEdge(nom)==null && graph.getEdge(nomBis)==null)
 	 * POur cela nous allons prendre un graphe ayant deux sommets et 0 aretes et nous allons vérifier que la relation 0-1 peut être ajouté
 	 * Pour cela, nous vérifier si nom==null et nombis==null. D'après le code du programme nom= node1+"-"+node2; et nombis=node2+"-"+node1
-	 * Le résultat obtenu est conforme aux attenres, l'arete peut être créée. 
+	 * Le résultat obtenu est conforme aux attentes, l'arete peut être créée. 
 	 * 
 	 */
 	@Test
